@@ -1,0 +1,38 @@
+<div class="container">
+    <header>
+      <h2>{{ pageTitle }}</h2>
+    </header>
+    <div class="group">
+
+    
+    <form [formGroup]="voucherForm" (ngSubmit)="submitForm()">
+      
+      <label for="name">Name:</label>
+      <input id="name" type="text" formControlName="name" [value]="voucherName" >
+      <small *ngIf="voucherForm.get('name')?.invalid && voucherForm.get('name')?.touched">Name is required</small>
+  
+      <label for="usedNumber">Number of Used:</label>
+      <input id="usedNumber" type="number" formControlName="usedNumber">
+      <small *ngIf="voucherForm.get('usedNumber')?.invalid && voucherForm.get('usedNumber')?.touched">Must be at least 1</small>
+  
+      <label for="discountValue">Discount Value %:</label>
+      <input id="discountValue" type="number" formControlName="discountValue" [value]="discount" >
+      <small *ngIf="voucherForm.get('discountValue')?.invalid && voucherForm.get('discountValue')?.touched">Enter a value between 1-100%</small>
+  
+      <label for="commission">Commission:</label>
+      <input id="commission" type="number" formControlName="commission">
+      <small *ngIf="voucherForm.get('commission')?.invalid && voucherForm.get('commission')?.touched">Commission must be 0 or more</small>
+  
+      <label for="quantity">Quantity:</label>
+      <input id="quantity" type="number" formControlName="quantity">
+      <small *ngIf="voucherForm.get('quantity')?.invalid && voucherForm.get('quantity')?.touched">Quantity must be at least 1</small>
+  
+      <label for="validationDate">Validation Date:</label>
+      <input id="validationDate" type="date" formControlName="validationDate">
+      <small *ngIf="voucherForm.get('validationDate')?.invalid && voucherForm.get('validationDate')?.touched">Date is required</small>
+  
+      <button type="submit" [disabled]="voucherForm.invalid">Add Voucher</button>
+    </form>
+</div>
+  </div>
+  

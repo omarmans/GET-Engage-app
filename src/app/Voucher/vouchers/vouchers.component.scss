@@ -1,0 +1,197 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    background-color: #dedede;
+}
+header{
+    display: flex;
+    background-color: white;
+    width: 100%;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+.add-button{
+    width: 85%;
+    text-align: right;
+    align-content: center;
+}
+.link{color: white;}
+.add-button button{
+    padding: 1%;
+    background-color: #033C5B;
+    border: 1px solid #033C5B;
+    color: white;
+    border-radius: 10px;
+}
+h2{padding-left: 2%;font-size: xx-large;}
+.search{
+    padding: 1%;
+}
+.searchinput{
+    background-color: white;
+    border: 1px solid #dedede;
+    padding: 0.7%;
+    width: 20%;
+    border-radius: 10px;
+}
+.cards{
+    width: 100%;
+    height: 100vh;
+    
+}
+.card {
+    padding: 3%;
+    height: 60vh;
+    width:60%;
+    margin: auto; 
+    border-radius: 20px;
+    position: relative;
+    border: 1px solid #dedede;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .name {
+    font-size: x-large;
+    color: #033c5b;
+    height: 5px;
+  }
+  hr{
+    width: 80%;
+  }
+  .discount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .value {
+    font-size: 250%;
+    height: 5px;
+    font-weight: bold;
+    color: #033c5b;
+  }
+  .para {
+      font-size: small;
+    padding: 3%;
+    height: 50px;
+    color: #b6b6b6;
+  }
+  
+  .date {
+      color: #b9b9b9;
+      font-size: 14px;
+    }
+    
+    .desc p {
+        font-size: medium;
+        color: #033c5b;
+        padding: 2%;
+    }
+    
+    .timeframe .time{
+      font-size: 14px;
+    }
+  .fa-solid {
+    font-size: larger;
+    color: #033c5b;
+  }
+  .owl-item {
+    transition:  800ms ease-in-out;
+  }
+  
+  ::ng-deep .owl-item {
+    transition: 800ms ease-in-out;
+  }
+  
+  ::ng-deep .owl-item.active.center .card {
+    width: 66% !important; 
+    height: 68vh !important; 
+    box-shadow: 0px 5px 20px rgba(60, 94, 158, 0.788);
+    border-radius: 25px; 
+    z-index: 2; 
+  }
+  
+.btn-vou{
+    width: 100%;
+    text-align: center;
+}
+.btn-vou button{
+    padding: 3%;
+    color: white;
+    border: 1px solid #033C5B;
+    background-color: #033C5B;
+    border-radius: 8px;
+    transition: 300ms;
+    font-size: large;
+}
+.btn-vou button:hover{
+    padding: 3%;
+    color: #033C5B;
+    border: 1px solid #033C5B;
+    background-color: white;
+    border-radius: 8px;
+}
+.status-badge {
+  position: absolute;
+  top: 4%;
+  right: 0;
+  background-color: rgb(255, 255, 255);
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
+
+.status-badge.active {
+  border-bottom:1px solid green;
+  border-top:1px solid green;
+  border-left:1px solid green;
+  color: green;
+}
+
+.status-badge.not-active {
+  border-bottom:1px solid red;
+  border-top:1px solid red;
+  border-left:1px solid red;
+  color: red;
+}
+/* 🟢 زرار الثلاث نقاط */
+.menu-container {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #033C5B;
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  background: white;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 150px;
+  z-index: 10;
+}
+
+.menu-dropdown button {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  color: #033C5B;
+}
+
+.menu-dropdown button:hover {
+  background: #f0f0f0;
+}

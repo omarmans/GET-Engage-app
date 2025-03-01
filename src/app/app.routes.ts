@@ -5,6 +5,8 @@ import { MerchantsComponent } from './Merchant/merchants/merchants.component';
 import { AddMerchantComponent } from './Merchant/add-merchant/add-merchant.component';
 import { MerchantDetailsComponent } from './Merchant/merchant-details/merchant-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { VouchersComponent } from './Voucher/vouchers/vouchers.component';
+import { AddVoucherComponent } from './Voucher/add-voucher/add-voucher.component';
 
 export const routes: Routes = [
   { path: '', component: LogInComponent },
@@ -13,4 +15,6 @@ export const routes: Routes = [
   { path: 'add-merchants', component: AddMerchantComponent },
   { path: 'merchant-details/:id', component: MerchantDetailsComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'vouchers', component: VouchersComponent },
+  { path: 'add-voucher', component: AddVoucherComponent },
 ];

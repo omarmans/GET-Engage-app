@@ -17,7 +17,7 @@ import { RouterModule } from '@angular/router';
 })
 export class LogInComponent {
   loginForm!: FormGroup;
-  hidePassword: boolean = true;
+  hidePassword: boolean = false;
 
   constructor(private fb: FormBuilder) {}
 
