@@ -1,63 +1,73 @@
-.container {
-    background-color: #eee;
-  
-    width: 100%;
-    padding: 15px;
-    border-radius: 10px;
-
-    form{
-        display: flex;
-        flex-wrap: wrap;
-            gap: 20px;
-
-        .form-group{
-            background-color: #fff;
-                flex-basis: calc(50% - 20px);
-                display: flex;
-                flex-direction: column;
-                padding: 30px 25px;
-                border: 1px solid #eee;
-                box-shadow: 0 4px 6px 0 #A6D4FFA6;
-                label{
-                    display: block;
-                    margin-bottom: 10px;
-                    font-weight: bold;
-                }
-                input,textarea{
-                    box-shadow: 0 4px 6px 0 #A6D4FFA6;
-                    display: block;
-                    // width: ;
-                    outline: none;
-                    border: 2px solid #6E8BAB ;
-                    // outline: none;
-                    // border: none;/
-                    
-                    padding: 10px;
-                    border-radius: 15px;
-                    color: #49454F;
-                }
-                textarea{
-                    // height: 85px; width: 350px;
-                    height: 85px; width: 100%;
-                }
-                  
-                
-        }
-
-        button{
-            display: block;
-            align-items: center;
-            padding: 10px 25px;
-            width: 30%;
-            margin: auto;
-            border: none;
-            outline: none;
-            background-color: #033C5B;
-            // color:#A6D4FFA6 ;
-            color:#eee ;
-            border-radius: 15px;
-            cursor: pointer;
-        }
-    }
-
+.container{
+    position: absolute;
+    top: 0;
+    width: 94.9%;
+    height: 100vh;
+    background-color: #dedede;
 }
+h2{padding-left: 2%;font-size: xx-large;}
+header{
+    display: flex;
+    background-color: white;
+    width: 100%;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+.group{
+    padding: 3%;
+    width: 100%;
+    justify-content: center;
+    justify-items: center;
+}
+form {
+    display: grid;
+    width: 80%;
+    padding: 3%;
+    border-radius: 15px;
+    background-color: white;
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px; 
+    align-items: center;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px #6bb2d8;
+  }
+  
+  small {
+    color: red;
+    font-size: 12px;
+    grid-column: span 2;
+  }
+  
+  button {
+    grid-column: span 2; 
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #033C5B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: larger;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px #6bb2d8;
+  }
