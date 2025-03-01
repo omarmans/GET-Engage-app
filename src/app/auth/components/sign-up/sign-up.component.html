@@ -2,136 +2,137 @@
   <!-- Left Section: Image and Logo -->
   <div class="left-section">
     <div class="hand-image">
-      <img src="hand-image.png" alt="Digital Hand" />
+      <span class="off-text">OFF</span>
     </div>
     <div class="get-logo">
-      <img src="getGroup.png" alt="GET Logo" />
+      <!-- <img src="getGroup.png" alt="GET Logo" /> -->
       <h1>GET Engage</h1>
+    </div>
+    <div class="hand-image">
+      <span class="-text">25%</span>
     </div>
   </div>
 
   <!-- Right Section: Sign-Up Form -->
   <div class="right-section">
-    <h2>Sign Up</h2>
+    <div class="form">
+      <h2>Sign Up</h2>
+      <div class="group">
+  
+        <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+          <!-- Full Name -->
+          <!-- <div class="form-group">
+            <label for="fullName">Full Name :</label>
+            <div class="input-container">
+              <input
+                id="fullName"
+                type="text"
+                formControlName="fullName"
+                placeholder="Your Name"
+              />
+              <span class="icon">👤</span>
+            </div>
+            <div
+              *ngIf="
+                signUpForm.get('fullName')?.invalid &&
+                signUpForm.get('fullName')?.touched
+              "
+              class="error"
+            >
+              * Name is required
+            </div>
+          </div> -->
 
-    <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
-      <!-- Full Name -->
-      <!-- <div class="form-group">
-        <label for="fullName">Full Name :</label>
-        <div class="input-container">
-          <input
-            id="fullName"
-            type="text"
-            formControlName="fullName"
-            placeholder="Your Name"
-          />
-          <span class="icon">👤</span>
-        </div>
-        <div
-          *ngIf="
-            signUpForm.get('fullName')?.invalid &&
-            signUpForm.get('fullName')?.touched
-          "
-          class="error"
-        >
-          * Name is required
-        </div>
-      </div> -->
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email :</label>
+            <div class="input-container">
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="example@gmail.com"
+              />
+              <span class="icon"><i class="fa-solid fa-user"></i></span>
+            </div>
+            <div
+              *ngIf="
+                signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched
+              "
+              class="error"
+            >
+              * Valid email is required
+            </div>
+          </div>
 
-      <!-- Email -->
-      <div class="form-group">
-        <label for="email">Email :</label>
-        <div class="input-container">
-          <input
-            id="email"
-            type="email"
-            formControlName="email"
-            placeholder="example@gmail.com"
-          />
-          <span class="icon">📧</span>
-        </div>
-        <div
-          *ngIf="
-            signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched
-          "
-          class="error"
-        >
-          * Valid email is required
-        </div>
-      </div>
+          <!-- Password -->
+          <div class="form-group">
+            <label for="password">Password :</label>
+            <div class="input-container">
+              <input
+                id="password"
+                [type]="hidePassword ? 'password' : 'text'"
+                formControlName="password"
+                placeholder="Enter Password"
+              />
+              <span class="icon" (click)="togglePasswordVisibility()"><i class="fa-regular fa-eye"></i></span>
+            </div>
+            <div
+              *ngIf="
+                signUpForm.get('password')?.invalid &&
+                signUpForm.get('password')?.touched
+              "
+              class="error"
+            >
+              * Password must be at least 8 characters
+            </div>
+          </div>
+          <!-- Confirm Password -->
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password :</label>
+            <div class="input-container">
+              <input
+                id="confirmPassword"
+                [type]="hideConfirmPassword ? 'password' : 'text'"
+                formControlName="confirmPassword"
+                placeholder="Confirm Password"
+              />
+              <span class="icon" (click)="togglePasswordVisibility()"><i class="fa-regular fa-eye"></i></span>
+            </div>
+            <div *ngIf="signUpForm.hasError('passwordsMismatch')" class="error">
+              * Passwords do not match
+            </div>
+          </div>
+          <!-- User Type Dropdown -->
+          <div class="form-group">
+            <label for="userType">Type :</label>
+            <div class="input-containerr">
+              <select id="userType" formControlName="type">
+                <option value="">Select Type</option>
+                <option value="get-Holding">Get-Holding</option>
+                <option value="merchant">Merchant</option>
+              </select>
+            </div>
+            <div
+              *ngIf="
+                signUpForm.get('type')?.invalid && signUpForm.get('type')?.touched
+              "
+              class="error"
+            >
+              * Type is required
+            </div>
+          </div>
 
-      <!-- Password -->
-      <div class="form-group">
-        <label for="password">Password :</label>
-        <div class="input-container">
-          <input
-            id="password"
-            [type]="hidePassword ? 'password' : 'text'"
-            formControlName="password"
-            placeholder="****************"
-          />
-          <span class="icon" (click)="togglePasswordVisibility()">👁️</span>
-        </div>
-        <div
-          *ngIf="
-            signUpForm.get('password')?.invalid &&
-            signUpForm.get('password')?.touched
-          "
-          class="error"
-        >
-          * Password must be at least 8 characters
-        </div>
-      </div>
-      <!-- Confirm Password -->
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password :</label>
-        <div class="input-container">
-          <input
-            id="confirmPassword"
-            [type]="hideConfirmPassword ? 'password' : 'text'"
-            formControlName="confirmPassword"
-            placeholder="****************"
-          />
-          <span class="icon" (click)="togglePasswordVisibility()">👁️</span>
-        </div>
-        <div *ngIf="signUpForm.hasError('passwordsMismatch')" class="error">
-          * Passwords do not match
-        </div>
-      </div>
-      <!-- User Type Dropdown -->
-      <div class="form-group">
-        <label for="userType">Type :</label>
-        <div class="input-container">
-          <select id="userType" formControlName="type">
-            <option value="">Select Type</option>
-            <option value="get-Holding">Get-Holding</option>
-            <option value="merchant">Merchant</option>
-          </select>
-        </div>
-        <div
-          *ngIf="
-            signUpForm.get('type')?.invalid && signUpForm.get('type')?.touched
-          "
-          class="error"
-        >
-          * Type is required
-        </div>
-      </div>
+          <!-- Sign-Up Button -->
+          <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+        </form>
 
-      <!-- Sign-Up Button -->
-      <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
-    </form>
-
-    <!-- Social logins -->
-    <div class="social-logins">
-      <p>Sign up with others</p>
-      <button class="google-btn">Sign up with Google</button>
-      <button class="facebook-btn">Sign up with Facebook</button>
-    </div>
-
+<hr>
     <p class="signup-text">
       Already have an account?
       <a href="#" [routerLink]="'/'">Log in</a>
     </p>
+      </div>
+    </div>
   </div>
 </div>

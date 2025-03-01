@@ -1,18 +1,38 @@
-/* General container */
+/* Galaxy Background Effect */
 .container {
   display: flex;
   align-items: center;
   height: 100vh;
-  // background-color: #0a1f44;
-  color: #fff;
+  width: 100%;
+  background-color: #002A41; 
+  color: #dedede;
   font-family: Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
 }
+
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(217, 217, 217, 0.7) 1px, transparent 1px);
+  background-size: 40px 40px; 
+  opacity: 0.2;
+  padding: 50px;
+}
+
 
 /* Left section */
 .left-section {
   flex: 1;
   display: flex;
+  width: 50%;
   flex-direction: column;
+  // position: relative;
   // justify-content: center;
   align-items: center;
   padding: 20px;
@@ -25,9 +45,41 @@
   }
 }
 
+.hand-image{
+  width: 100%;
+}
+
+.off-text {
+  position: absolute;
+  top: -8%;
+  left: 0;
+  font-family:sans-serif;
+  font-size:300px;
+  font-weight: bold;
+  color: #002A41;
+  -webkit-text-stroke: 2px #0096D8; 
+  mask-image: linear-gradient(to bottom, transparent 20%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 20%, black 100%);
+  color: transparent;
+}
+.-text {
+  position: absolute;
+  bottom: -8%;
+  left: 0;
+  font-family:sans-serif;
+  font-size:300px;
+  font-weight: bold;
+  color: #002A41;
+  -webkit-text-stroke: 2px #0096D8; 
+  mask-image: linear-gradient(to top, transparent 25%, black 100%);
+  -webkit-mask-image: linear-gradient(to top, transparent 25%, black 100%);
+  color: transparent;
+}
+
 .left-section h1 {
   // margin-top: 20px;
-  font-size: 24px;
+  font-size: 90px;
+  color: #E4FDFF;
 }
 
 /* Hand Image */
@@ -42,18 +94,21 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 50%;
   padding: 50px;
   // background-color: #0a1f44;
 }
 
 h2 {
+  font-size: xx-large;
+  color: white;
   text-align: center;
   margin-bottom: 20px;
 }
 
 /* Form */
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 label {
@@ -61,16 +116,18 @@ label {
   margin-bottom: 5px;
 }
 
-.input-container {
+.input-container ,.google-btn, .facebook-btn{
   display: flex;
   align-items: center;
-  background: #1f3b70;
-  border: 1px solid #4c77af;
-  border-radius: 4px;
-  padding: 10px;
+  background: #033C5B;
+  position: relative;
+  width: 100%;
+  border: 1px solid #6E8BAB;
+  border-radius: 12px;
 }
 
 input {
+  padding: 3%;
   flex: 1;
   border: none;
   background: transparent;
@@ -79,37 +136,93 @@ input {
 }
 
 .icon {
+  position: absolute;
+  top: 0;
+  right: 0;
   cursor: pointer;
+  margin: 3%;
 }
 
 button {
   width: 100%;
   padding: 10px;
-  background-color: #00d1b2;
+  background-color: #00CFD2;
   border: none;
-  border-radius: 4px;
+  border-radius: 12px;
   color: #fff;
   font-size: 16px;
   cursor: pointer;
   margin-bottom: 10px;
 }
+.form{
+  background-color: #033C5B;
+  border: 1px solid #6E8BAB;
+  padding: 1%;
+  z-index: 1000;
+  border-radius: 15px;
+  justify-content: center;
+  justify-items: center;
+  width: 70%;
+  height: 90vh;
+}
+.group{
+  width: 80%;
+}
 
 button:disabled {
-  background-color: #555;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 /* Social logins */
 .social-logins {
   text-align: center;
+  align-items: center;
+  
+  justify-content: center;
+}
+.buttons{
+  padding-top: 7%;
+  padding-bottom: 7%;
+}
+.social {
+  display: flex;
+  padding-top: 7%;
+  padding-bottom: 3%;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; 
+  width: 100%;
+}
+.error{
+  color: rgb(241, 83, 83);
+  font-size: small;
+}
+.social hr {
+  flex-grow: 1; 
+  border: none;
+  height: 1px;
+  background-color: #aaaaaa; 
 }
 
+.social p {
+  margin: 0;
+  font-weight: bold;
+}
+.fa-brands {
+  font-size: larger;
+  padding-right: 4%;
+}
 .google-btn {
-  background-color: #dd4b39;
+  justify-content: center;
+  // background-color: #dd4b39;
+
 }
 
 .facebook-btn {
-  background-color: #3b5998;
+  justify-content: center;
+
+  // background-colr: #3b5998;
 }
 
 .signup-text {
