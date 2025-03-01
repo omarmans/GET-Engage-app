@@ -28,7 +28,7 @@ export class HeaderComponent {
     {
       i: 'fa-solid fa-cart-shopping',
 
-      href: 'plans',
+      href: 'vouchers',
     },
   ];
 }

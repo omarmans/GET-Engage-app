@@ -1,43 +1,70 @@
-.container {
-  background-color: #eee;
-
+.container{
   width: 100%;
-  padding: 15px;
+  min-height: 100vh;
+  background-color: #dedede;
+}
+header{
+  display: flex;
+  background-color: white;
+  width: 100%;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.add-button{
+  width: 85%;
+  text-align: right;
+  align-content: center;
+}
+.link{color: white;}
+.add-button button{
+  padding: 1%;
+  background-color: #033C5B;
+  border: 1px solid #033C5B;
+  color: white;
   border-radius: 10px;
+}
+h2{padding-left: 2%;font-size: xx-large;}
 
   .Merchants{
     display: flex;
-   
+   padding: 2%;
     flex-wrap: wrap;
     margin-top: 20px;
-    gap: 10px;
+    gap: 20px;
+    justify-content: center;
     .Merchant{
       display: flex;
       align-items: center;
       flex-direction: column;
-      flex-basis: calc(50% - 10px);
+      flex-basis: calc(35% - 10px);
+      height: 30vh;
       border-radius: 5px;
-      padding: 10px 25px;
-      border: 3px solid #6E8BAB ;
+      padding: 5px 7px;
+      border: 3px solid #ffffff ;
+      background-color: white;
        box-shadow: 0 4px 6px 0  #A6D4FFA6;
        transition: .4s;
        &:hover{
         transform: translateY(-5px);
         cursor: pointer;
        }
+       .name{
+        width: 70%;
+        color:#012A41;
+       }
        div{
         display: flex;
         align-items: center ;
         justify-content: space-between;
         gap: 10px;
-        padding: 10px;
+        padding: 20px;
         i{
           font-weight: bold;
-          font-size: 35px;
+          font-size: 30px;
         }
         h2{
           margin: 0;
-          font-size: 35px;
+          font-size: 30px;
           font-weight: bold;
 
         }
@@ -47,17 +74,21 @@
         display: block;
         text-align: center;
         padding: 10px 25px;
+        margin-top: 10%;
         border-radius: 12px;
         border: 1px solid #eee;
         background-color: #012A41;
         color: #FFFFFF;
         font-weight: 400;
         cursor: pointer;
+        font-size: larger;
         transition: .4s;
         &:hover{
-            background-color: #033C5B;
+            border:1px solid #033C5B;
+            background-color: white;
+            color: #033C5B;
         }
        }
     }
   }
-}
+
