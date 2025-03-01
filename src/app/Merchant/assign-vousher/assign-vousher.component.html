@@ -1,0 +1,22 @@
+<div class="overlay" (click)="close()" *ngIf="showForm"></div>
+<div class="form-popup" *ngIf="showForm">
+  <button class="close-btn" (click)="close()">&times;</button>
+  <form>
+    <div class="form-group">
+      <label for="">Merchant Name :</label>
+      <input type="text" placeholder="add-Merchant">
+    </div>
+    <div class="form-group">
+      <label for="">Discount :</label>
+      <select>
+        <option>Discount 1 , Available :150</option>
+        <option>Discount 2 , Available :300</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="">Quntity</label>
+      <input type="text" placeholder="add-Merchant">
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>

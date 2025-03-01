@@ -1,0 +1,21 @@
+<div class="page d-flex">
+  <div class="sidebar p-20 p-relative">
+    <img src="getGroup.png" class="" alt="" />
+    <ul>
+      <li *ngFor="let link of classesArray; let i = index">
+        <a
+          [ngClass]="{ active: i === activeLinkIndex }"
+          routerLinkActiveOptions="{ exact: true }"
+          [routerLink]="link.href"
+          (click)="setActiveLink(i)"
+          class="d-flex align-center fs-14 c-black rad-6 p-10"
+        >
+          <i [ngClass]="link.i"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="content w-full">
+          <router-outlet></router-outlet>
+  </div>
+</div>

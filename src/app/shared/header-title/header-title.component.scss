@@ -1,0 +1,27 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 2px solid #012A41;
+    margin-bottom: 20px;
+    h1 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #033c5b;
+    }
+
+    ::ng-deep button {
+        padding: 10px;
+        background-color: #033c5b;
+        color: #eee;
+        border-radius: 15px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #012A41;
+        }
+    }
+}

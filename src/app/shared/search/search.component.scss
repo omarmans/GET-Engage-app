@@ -1,0 +1,16 @@
+.search-container{
+  .search-box{
+    input{
+      
+    display: block;
+    width: 20%;
+    padding: 10px;
+      border-radius: 15px;
+      color: #49454F;
+      transition: .4s;
+      &:focus{
+        width: 40%;
+      }
+  }
+  }
+}

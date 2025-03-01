@@ -1,0 +1,92 @@
+<div class="container">
+    <app-header-title>
+        <h1>
+            {{merchant?.companyTitle}}
+        </h1>
+        <!-- <button>Assign Voucher</button> -->
+        <button (click)="showForm = true">Assign Voucher</button>
+
+    </app-header-title>
+
+    <app-assign-vousher 
+        [showForm]="showForm" 
+        (closeForm)="showForm = false">
+    </app-assign-vousher>
+
+    <div class="voushers">
+
+        <div class="vousher">
+            <div class="vousher-header">
+                <i class="fa-solid fa-gift"></i>
+                <span>Total vouchers</span>
+            </div>
+            <p>{{merchant?.totalVouchers}}</p>
+        </div>
+        <div  class="vousher">
+            <div class="vousher-header">
+                <i class="fa-solid fa-user-check"></i>
+                <span>Total of used vouchers</span>
+            </div>
+            <p>{{merchant?.totalUsedVouchers}}</p>
+        </div>
+        <div  class="vousher">
+            <div class="vousher-header">
+                <i class="fa-solid fa-paperclip"></i>
+                <span>Total unused vouchers</span>
+            </div>
+            <p>{{merchant?.totalUnusedVouchers}}</p>
+        </div>
+    </div>
+
+    <div class="stat">
+        <img src="stat.png" alt="">
+
+        <div class="commissions">
+            <div class="commission" (click)="onShowTable()" style="cursor: pointer;">
+                <div class="commission-header">
+                    <i class="fa-solid fa-paperclip"></i>
+                    <span>Pending Commission</span>
+                </div>
+                <p>{{merchant?.pendingCommission}} EGP</p>
+            </div>
+            <div class="commission">
+                <div class="commission-header">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span>Paid  Commission</span>
+                </div>
+                <p>{{merchant?.paidCommission}} EGP</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="table-container" *ngIf="showTable">
+        <table>
+          <thead>
+            <tr>
+              <th>Voucher ID</th>
+              <th>Merchant Assigned Date</th>
+              <th>Client Assigned Date</th>
+              <th>Valid</th>
+              <th>Discount Amount</th>
+              <th>Commission</th>
+              <th>Used</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let voucher of vouchers">
+              <td>{{ voucher.id }}</td>
+              <td>{{ voucher.merchantAssignedDate }}</td>
+              <td>{{ voucher.clientAssignedDate }}</td>
+              <td>{{ voucher.valid ? 'Yes' : 'No' }}</td>
+              <td>{{ voucher.discountAmount }} EGP</td>
+              <td>{{ voucher.commission }} EGP</td>
+              <td [class.used-true]="voucher.used" [class.used-false]="!voucher.used">
+                {{ voucher.used ? 'True' : 'False' }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</div>

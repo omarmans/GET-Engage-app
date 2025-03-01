@@ -1,0 +1,79 @@
+<div class="container">
+  <!-- Left Section: Image and Icons -->
+  <div class="left-section">
+    <div class="hand-image">
+      <img src="hand-image.png" alt="Digital Hand" />
+    </div>
+    <div class="get-logo">
+      <img src="getGroup.png" alt="" />
+      <h1>GET Engage</h1>
+    </div>
+  </div>
+
+  <!-- Right Section: Login Form -->
+  <div class="right-section">
+    <h2>Login</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email :</label>
+        <div class="input-container">
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="example@gmail.com"
+          />
+          <span class="icon">👤</span>
+        </div>
+        <div
+          *ngIf="
+            loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+          "
+          class="error"
+        >
+          * Valid email is required
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password :</label>
+        <div class="input-container">
+          <input
+            id="password"
+            [type]="hidePassword ? 'password' : 'text'"
+            formControlName="password"
+            placeholder="****************"
+          />
+          <span class="icon" (click)="togglePasswordVisibility()">👁️</span>
+        </div>
+        <div
+          *ngIf="
+            loginForm.get('password')?.invalid &&
+            loginForm.get('password')?.touched
+          "
+          class="error"
+        >
+          * Password must be at least 8 characters
+        </div>
+      </div>
+
+      <!-- Login Button -->
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <!-- Social logins -->
+    <div class="social-logins">
+      <p>Login with others</p>
+      <button class="google-btn">Login with Google</button>
+      <button class="facebook-btn">Login with Facebook</button>
+    </div>
+
+    <p class="signup-text">
+      New Here? Create an account.
+      <a href="#" [routerLink]="'sign-up'">Sign Up</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="container">
+
+  <!--title -->
+  <app-header-title>
+    <h1>Merchants</h1>
+    <button (click)="addMerchant()">+ Add Merchant</button>
+  </app-header-title>
+  
+  <!-- searechComponents -->
+  <app-search />
+
+  <div class="Merchants">
+    @for ( Merchant of Merchants; track Merchant.imgs) {
+      <div class="Merchant">
+
+        <div>
+          <i [ngClass]="Merchant.imgs"></i>
+          <h2>{{Merchant.companyTitle}}</h2>
+        </div>
+        <button (click)="merchantDetails(Merchant.id)">Details</button>
+      </div>
+    }
+  </div>
+</div>
