@@ -38,9 +38,15 @@ export class LogInComponent {
 
       this.auth.login(userData).subscribe({
         next: (response) => {
-          console.log('login successful:', response);
-          alert('login successful!');
-          this.router.navigate(['/dashboard'])
+          if(response.result==1){
+            console.log('login successful:', response);
+            alert('login successful!');
+            this.router.navigate(['/dashboard'])
+          }         
+          if(response.result==2){
+            console.log('Username or password is incorrect :', response);
+            alert('Username or password is incorrect!');
+          }         
         },
         error: (error) => {
           console.log('login failed:', error);
