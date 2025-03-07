@@ -7,13 +7,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MerchantService {
-  private addapi = 'http://10.3.21.25:8109/api/app/mercant/mercant';
-  private get=' http://10.3.21.25:8109/api/app/mercant/merchant';
+  private api = 'http://10.3.21.25:8109/api/app/mercant/';
 
   constructor(private http:HttpClient) { }
 
   addmerchant(data:any):Observable<any>{
-    return this.http.post<any>(this.addapi, data, {
+    return this.http.post<any>(this.api+'mercant', data, {
       headers: {
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
@@ -23,6 +22,6 @@ export class MerchantService {
   }
 
   getmerchant():Observable<{ data: Merchant[] }>{
-    return this.http.get<{ data: Merchant[] }>(this.get);
+    return this.http.get<{ data: Merchant[] }>(this.api+'merchant');
   }
 }
