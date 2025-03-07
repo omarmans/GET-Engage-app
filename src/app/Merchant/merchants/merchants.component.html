@@ -15,12 +15,12 @@
   <app-search />
 
   <div class="Merchants">
-    @for ( Merchant of Merchants; track Merchant.imgs) {
+    @for ( Merchant of Merchants; track Merchant.id) {
       <div class="Merchant">
 
         <div class="name">
-          <i [ngClass]="Merchant.imgs"></i>
-          <h2>{{Merchant.companyTitle}}</h2>
+          <i [ngClass]="Merchant.picURL"></i>
+          <h2>{{Merchant.name}}</h2>
         </div>
         <button (click)="merchantDetails(Merchant.id)">Details</button>
       </div>

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../header/header.component';
 import { HeaderTitleComponent } from '../../shared/header-title/header-title.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Merchant } from '../models/Mecrhant.model';
 import { merchantArray } from '../models/merchantArray';
 import { AssignVousherComponent } from '../assign-vousher/assign-vousher.component';
@@ -57,7 +57,11 @@ export class MerchantDetailsComponent implements OnInit {
     },
   ];
 
+  constructor(private router: Router) {}
+
   onShowTable() {
-    this.showTable = !this.showTable;
+    this.router.navigate(['/pending-commission'], {
+      queryParams: { companyTitle: this.merchant?.companyTitle }
+    });
   }
 }

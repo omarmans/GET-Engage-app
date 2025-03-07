@@ -3,8 +3,9 @@ import { SearchComponent } from '../../shared/search/search.component';
 import { CommonModule } from '@angular/common';
 import { HeaderTitleComponent } from '../../shared/header-title/header-title.component';
 import { Router } from '@angular/router';
-import { Merchant } from '../models/Mecrhant.model';
+import { Merchant } from '../../models/Merchant.model';
 import { merchantArray } from '../models/merchantArray';
+import { MerchantService } from '../services/merchant.service';
 
 @Component({
   selector: 'app-merchants',
@@ -14,8 +15,20 @@ import { merchantArray } from '../models/merchantArray';
   styleUrl: './merchants.component.scss',
 })
 export class MerchantsComponent {
+  Merchants! :Merchant[];
   router = inject(Router);
-  Merchants? = merchantArray;
+  constructor(private merchant:MerchantService){
+    this.merchant.getmerchant().subscribe({
+      next:(response)=>{
+        console.log('API Response:', response);
+        this.Merchants=response.data || [];
+      },
+      error:(error)=>{
+        console.log('API error:', error);
+      }
+    })
+  }
+
   addMerchant() {
     this.router.navigate(['/add-merchants']);
   }

@@ -6,7 +6,8 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-log-in',
@@ -19,7 +20,7 @@ export class LogInComponent {
   loginForm!: FormGroup;
   hidePassword: boolean = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder , private auth :AuthService, private router:Router) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -30,7 +31,23 @@ export class LogInComponent {
 
   onLogin(): void {
     if (this.loginForm.valid) {
-      console.log('Form Data:', this.loginForm.value);
+      const userData = {
+        userNameOrEmailAddress: this.loginForm.get('email')?.value.split('@')[0], 
+        password: this.loginForm.get('password')?.value,
+      };
+
+      this.auth.login(userData).subscribe({
+        next: (response) => {
+          console.log('login successful:', response);
+          alert('login successful!');
+          this.router.navigate(['/dashboard'])
+        },
+        error: (error) => {
+          console.log('login failed:', error);
+          alert('login failed!');
+        },
+      })
+
     }
   }
 

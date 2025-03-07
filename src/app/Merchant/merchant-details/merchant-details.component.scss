@@ -2,12 +2,31 @@
     background-color: #eee;
 
     width: 100%;
-    padding: 15px;
-    border-radius: 10px;
-
+    min-height: 100vh;
+}
+    h2{padding-left: 2%;font-size: x-large;}
+    header{
+        display: flex;
+        background-color: white;
+        width: 100%;
+        border-bottom-right-radius: 12px;
+        border-bottom-left-radius: 12px;
+    }
+    .add-button{
+      width: 85%;
+      text-align: right;
+      align-content: center;
+  }
+  .link{color: white;}
+  .add-button button{
+      padding: 1%;
+      background-color: #033C5B;
+      border: 1px solid #033C5B;
+      color: white;
+      border-radius: 10px;
+  }
     .voushers{
-    margin-bottom: 30px;
-
+    padding: 2%;
 display: flex;
 align-items: center;
 justify-content: space-between;
@@ -15,8 +34,12 @@ gap: 10px;
     .vousher{
         display: flex;
         flex-direction: column;
-        border: 1px solid #777;
-        flex-basis: 33.33%;
+        border: 1px solid #ffffff;
+        background-color: white;
+        border-radius: 8px;
+        flex-basis: 30.33%;
+        height: 125px;
+        gap: 20px;
         padding: 10px 25px;
         .vousher-header,p{
          display: flex;
@@ -32,18 +55,20 @@ gap: 10px;
 
 .stat{
     display: flex;
-    margin-top: 20px;
     gap: 100px;
+    padding: 2%;
+    justify-content: center;
+
     .commissions{
         display: flex;
 flex-wrap: wrap;
 gap: 10px;
-color: #eee;
+color: #000000;
 .commission{
             border-radius: 12px;
             width: 100%;
             padding: 30px;
-            background-color: #777;
+            background-color: #ffffff;
             .commission-header{
                 display: flex;
                 // justify-content: space-between;
@@ -57,7 +82,7 @@ color: #eee;
         }
     }
 }
-}
+
 
 
 .table-container {

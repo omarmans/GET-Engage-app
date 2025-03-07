@@ -48,7 +48,6 @@ export class AddVoucherComponent implements OnInit {
     });
   }
   
-  
   submitForm() {
     if (this.voucherForm.valid) {
       console.log('Form Data:', this.voucherForm.value);

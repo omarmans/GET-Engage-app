@@ -4,15 +4,18 @@ import { Merchant } from '../Merchant/models/Mecrhant.model';
 import { merchantArray } from '../Merchant/models/merchantArray';
 import { Voucher } from '../Merchant/models/vousher.model';
 import { HeaderTitleComponent } from '../shared/header-title/header-title.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [HeaderTitleComponent],
+  imports: [HeaderTitleComponent, CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit {
+  showPopup: boolean=false;
+  showPopupmerchant: boolean=false;
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.merchant = this.Merchants.find((m: Merchant) => m.id === id);
@@ -56,5 +59,19 @@ export class DashboardComponent implements OnInit {
 
   onShowTable() {
     this.showTable = !this.showTable;
+  }
+  
+  total() {
+    this.showPopup = true; 
+  }
+
+  closePopup() {
+    this.showPopup = false; 
+  }
+  totalmerchant(){
+    this.showPopupmerchant=true;
+  }
+  closePopupmerchant(){
+    this.showPopupmerchant=false;
   }
 }
