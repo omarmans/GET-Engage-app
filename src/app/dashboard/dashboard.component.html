@@ -1,24 +1,23 @@
 <div class="container">
     <app-header-title>
-        <h1>
-            {{'Dashboard'}}
-        </h1>
+        <header>
+            <h2>
+                {{'Dashboard'}}
+            </h2>
+        </header>
         <!-- <button>Assign Voucher</button> -->
-
     </app-header-title>
 
-
     <div class="voushers">
-
-        <div class="vousher">
-            <div class="vousher-header">
+        <div class="vousher" (click)="total()">
+            <div class="vousher-header" >
                 <i class="fa-solid fa-gift"></i>
                 <span>Total number of vouchers</span>
             </div>
             <!-- <p>{{merchant?.totalVouchers}}</p> -->
             <p>{{150}}</p>
         </div>
-        <div  class="vousher">
+        <div  class="vousher" (click)="totalmerchant()">
             <div class="vousher-header">
                 <i class="fa-solid fa-user-check"></i>
                 <span>Total number of merchants</span>
@@ -33,13 +32,55 @@
             </div>
             <!-- <p>{{merchant?.totalUnusedVouchers}}</p> -->
             <p>{{0}}</p>
-
         </div>
     </div>
 
     <div class="stat">
         <img src="stat.png" alt="">
         <img src="DiscountTypes.png" alt="">
-
-   
     </div>
+    <div class="popup-overlay" *ngIf="showPopup">
+        <div class="popup">
+            <h3>Vouchers List</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Voucher ID</th>
+                        <th>Discount Value</th>
+                        <th>Used</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let voucher of vouchers">
+                        <td>{{ voucher.id }}</td>
+                        <td>{{ voucher.discountAmount }} %</td>
+                        <td>{{ voucher.used ? 'Yes' : 'No' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button (click)="closePopup()">Close</button>
+        </div>
+    </div>
+    
+    <div class="popup-overlay" *ngIf="showPopupmerchant">
+        <div class="popup">
+            <h3>Merchants List</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Merchant ID</th>
+                        <th>Name Merchant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let merchant of Merchants">
+                        <td>{{ merchant.id }}</td>
+                        <td>{{ merchant.companyTitle }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button (click)="closePopupmerchant()">Close</button>
+        </div>
+    </div>
+</div>
+    

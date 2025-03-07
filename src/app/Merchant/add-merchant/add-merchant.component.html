@@ -1,46 +1,34 @@
-  <div class="container">
-      <app-header-title>
-        <header>
+<div class="container">
+  <app-header-title>
+    <header>
+      <h2>Add-Merchant</h2>
+    </header>
+  </app-header-title>
 
-          <h2>Add-Merchant</h2>
-        </header>
-      </app-header-title>
-
-      <div class="group">
-        <form>
-          <div class="form-group">
-            <label>Email</label>
-            <Input type="email" placeholder="Please enter Email" />
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <Input type="password" placeholder="Please enter Password" />
-          </div>
-          <div class="form-group">
-            <label>Title</label>
-            <Input type="text" placeholder="Please enter Title" />
-          </div>
-          <div class="form-group">
-            <label>Example</label>
-            <Input type="email" placeholder="Please enter Example" />
-          </div>
-          <div class="form-group">
-            <label>Description :1</label>
-            <textarea placeholder="Please enter Description 1"></textarea>
-          </div>
-          <div class="form-group">
-            <label>Description :2</label>
-            <textarea placeholder="Please enter Description 2"></textarea>
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <Input type="email" placeholder="Please enter Email" />
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <Input type="email" placeholder="Please enter Email" />
-          </div>
-          <Button>Submit</Button>
-        </form>
+  <div class="group">
+    <form [formGroup]="addMerchant" (ngSubmit)="add()">
+      <div class="form-group">
+        <label>name</label>
+        <input type="text" placeholder="Please enter name" formControlName="name" />
       </div>
-    </div>
+      <div class="form-group">
+        <label>description</label>
+        <textarea placeholder="Please enter description" formControlName="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Logo image</label>
+        <div class="relative  p-2 bg-white w-full">
+          <input type="file" id="imageUpload" (change)="onFileSelected($event)" name="image" accept="image/*" class="hidden">
+          <label for="imageUpload" class="cursor-pointer bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+              Choose File
+          </label>
+          <span *ngIf="selectedFile" class="ml-3 text-gray-700 text-sm">{{selectedFile.name||null}}</span>
+        </div>
+      </div>
+      <div class="input">
+
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { MerchantDetailsComponent } from './Merchant/merchant-details/merchant-d
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { VouchersComponent } from './Voucher/vouchers/vouchers.component';
 import { AddVoucherComponent } from './Voucher/add-voucher/add-voucher.component';
+import { PendingCommissionComponent } from './Merchant/pending-commission/pending-commission.component';
 
 export const routes: Routes = [
   { path: '', component: LogInComponent },
@@ -17,4 +18,6 @@ export const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'vouchers', component: VouchersComponent },
   { path: 'add-voucher', component: AddVoucherComponent },
+  { path: 'pending-commission', component: PendingCommissionComponent },
+
 ];

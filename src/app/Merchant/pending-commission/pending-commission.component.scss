@@ -1,0 +1,66 @@
+.container {
+    background-color: #eee;
+
+    width: 100%;
+    min-height: 100vh;
+}
+    h2{padding-left: 2%;font-size: x-large;}
+    header{
+        display: flex;
+        background-color: white;
+        width: 100%;
+        border-bottom-right-radius: 12px;
+        border-bottom-left-radius: 12px;
+    }
+    .add-button{
+      width: 85%;
+      text-align: right;
+      align-content: center;
+  }
+  .link{color: white;}
+  .add-button button{
+      padding: 1%;
+      background-color: #033C5B;
+      border: 1px solid #033C5B;
+      color: white;
+      border-radius: 10px;
+  }
+.table-container {
+    overflow-x: auto;
+    margin-top: 30px;
+    background-color: white;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  th {
+    background-color: #f4f4f4;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  .used-true {
+    color: green;
+    font-weight: bold;
+  }
+  .used-false {
+    color: red;
+    font-weight: bold;
+  }
+  .d-flex{
+    gap: 30px;
+    padding: 2%;
+    justify-content: center;
+  }
+  .box{
+    text-align: center;
+    background-color: white;
+    width: 40%;
+    border-radius: 10px;
+  }

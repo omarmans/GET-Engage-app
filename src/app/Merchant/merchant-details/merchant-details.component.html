@@ -1,10 +1,14 @@
 <div class="container">
     <app-header-title>
-        <h1>
-            {{merchant?.companyTitle}}
-        </h1>
+        <header>
+            <h2>
+                {{merchant?.companyTitle}}
+            </h2>
+            <div class="add-button">
+                <button (click)="showForm = true">Assign Voucher</button>
+            </div>
+        </header>
         <!-- <button>Assign Voucher</button> -->
-        <button (click)="showForm = true">Assign Voucher</button>
 
     </app-header-title>
 

@@ -75,7 +75,7 @@
                 formControlName="password"
                 placeholder="Enter Password"
               />
-              <span class="icon" (click)="togglePasswordVisibility()"><i class="fa-regular fa-eye"></i></span>
+              <span class="icon" ><i class="fa-regular fa-eye"></i></span>
             </div>
             <div
               *ngIf="
@@ -97,7 +97,7 @@
                 formControlName="confirmPassword"
                 placeholder="Confirm Password"
               />
-              <span class="icon" (click)="togglePasswordVisibility()"><i class="fa-regular fa-eye"></i></span>
+              <span class="icon"><i class="fa-regular fa-eye"></i></span>
             </div>
             <div *ngIf="signUpForm.hasError('passwordsMismatch')" class="error">
               * Passwords do not match

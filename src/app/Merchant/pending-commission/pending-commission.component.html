@@ -1,0 +1,52 @@
+<div class="container">
+    <app-header-title>
+        <header>
+            <h2>
+                {{companyTitle}}
+            </h2>
+            <div class="add-button">
+                <button >Settle</button>
+            </div>
+        </header>
+    </app-header-title>
+    <div class="d-flex">
+        <div class="box">
+            <h3>Pending Commission</h3>
+            <p>500 EGP</p>
+        </div>
+        <div class="box">
+            <h3>Paid Commission</h3>
+            <p>200 EGP</p>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <h2>Pending Commission Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Voucher ID</th>
+                    <th>Merchant Assigned Date</th>
+                    <th>Client Assigned Date</th>
+                    <th>Valid</th>
+                    <th>Discount Amount</th>
+                    <th>Commission</th>
+                    <th>Used</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let voucher of vouchers">
+                    <td>{{ voucher.id }}</td>
+                    <td>{{ voucher.merchantAssignedDate }}</td>
+                    <td>{{ voucher.clientAssignedDate }}</td>
+                    <td>{{ voucher.valid ? 'Yes' : 'No' }}</td>
+                    <td>{{ voucher.discountAmount }} EGP</td>
+                    <td>{{ voucher.commission }} EGP</td>
+                    <td [class.used-true]="voucher.used" [class.used-false]="!voucher.used">
+                        {{ voucher.used ? 'True' : 'False' }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
