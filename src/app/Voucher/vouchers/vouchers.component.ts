@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { Router,RouterModule } from '@angular/router';
+import { VouchersService } from '../services/vouchers.service';
+import { Voucher } from '../../models/Vousher.model';
 
 @Component({
   selector: 'app-vouchers',
@@ -10,17 +12,28 @@ import { Router,RouterModule } from '@angular/router';
   templateUrl: './vouchers.component.html',
   styleUrl: './vouchers.component.scss'
 })
-export class VouchersComponent {
-  constructor(private router :Router){}
+export class VouchersComponent implements OnInit {
+  vouchers! : Voucher[];
+  
 
-  vouchers = [
-    { id: 1, name: 'Voucher 1', discount: 25, date: '19-2-2025 12:00:00', quantity: 0, timeframe: '19-2-2025 12:00:00', showMenu: false },
-    { id: 2, name: 'Voucher 2', discount: 30, date: '20-2-2025 10:30:00', quantity: 5, timeframe: '21-2-2025 10:30:00', showMenu: false },
-    { id: 3, name: 'Voucher 3', discount: 15, date: '21-2-2025 08:00:00', quantity: 2, timeframe: '22-2-2025 08:00:00', showMenu: false },
-    { id: 4, name: 'Voucher 1', discount: 25, date: '19-2-2025 12:00:00', quantity: 0, timeframe: '19-2-2025 12:00:00', showMenu: false },
-    { id: 5, name: 'Voucher 2', discount: 30, date: '20-2-2025 10:30:00', quantity: 5, timeframe: '21-2-2025 10:30:00', showMenu: false },
-    { id: 6, name: 'Voucher 3', discount: 15, date: '21-2-2025 08:00:00', quantity: 2, timeframe: '22-2-2025 08:00:00', showMenu: false }
-  ];
+  constructor(private router :Router ,private voucher:VouchersService){
+   
+  }
+  ngOnInit(): void {
+    this.loadVouchers();
+  }
+  loadVouchers() {
+    this.voucher.getvouchers().subscribe({
+      next: (response) => {
+        console.log('API Response:', response);
+        this.vouchers = response || [];
+      },
+      error: (error) => {
+        console.error('API error:', error);
+        alert('Failed to load vouchers. Please try again later.');
+      }
+    });
+  }
   
 
   customOptions: OwlOptions = {

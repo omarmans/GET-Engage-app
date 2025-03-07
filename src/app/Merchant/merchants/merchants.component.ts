@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { SearchComponent } from '../../shared/search/search.component';
 import { CommonModule } from '@angular/common';
 import { HeaderTitleComponent } from '../../shared/header-title/header-title.component';
@@ -14,10 +14,16 @@ import { MerchantService } from '../services/merchant.service';
   templateUrl: './merchants.component.html',
   styleUrl: './merchants.component.scss',
 })
-export class MerchantsComponent {
+export class MerchantsComponent implements OnInit {
   Merchants! :Merchant[];
   router = inject(Router);
   constructor(private merchant:MerchantService){
+    
+  }
+  ngOnInit(): void {
+    this.loadmerchants();
+  }
+  loadmerchants(){
     this.merchant.getmerchant().subscribe({
       next:(response)=>{
         console.log('API Response:', response);

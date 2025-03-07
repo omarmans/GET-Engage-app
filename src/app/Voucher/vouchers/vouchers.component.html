@@ -17,7 +17,7 @@
                 <button class="menu-button" (click)="toggleMenu(card)">
                   &#8942;
                 </button>
-                <div class="menu-dropdown" *ngIf="card.showMenu">
+                <div class="menu-dropdown" >
                   <button (click)="addQuantity(card)">Add Quantity</button>
                   <button (click)="editTimeframe(card)">Edit Timeframe</button>
                 </div>
@@ -29,16 +29,16 @@
 
               <p class="name">{{ card.name }}</p>
               <div class="discount">
-                <p class="value">{{ card.discount }}%</p>
+                <p class="value">{{ card.discountValue }}%</p>
                 <p class="para">To whole price</p>
               </div>
-              <p class="date">Created on {{ card.date }}</p>
+              <p class="date">Created on {{ card.validDate }}</p>
               <hr>
               <div class="desc">
-                <p class="p1"><i class="fa-solid fa-cart-plus"></i> Quantity:{{ card.quantity }}</p>
+                <p class="p1"><i class="fa-solid fa-cart-plus"></i> Quantity:{{ card.countity }}</p>
                 <div class="timeframe">
                   <p class="p1">Vaildation Date </p>
-                  <p class="time">{{ card.timeframe }}</p>
+                  <p class="time">{{ card.validDate }}</p>
                 </div>
               </div>
               <!-- <div class="btn-vou">
