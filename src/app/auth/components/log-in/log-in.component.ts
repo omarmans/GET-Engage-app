@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-log-in',
@@ -20,7 +21,7 @@ export class LogInComponent {
   loginForm!: FormGroup;
   hidePassword: boolean = false;
 
-  constructor(private fb: FormBuilder , private auth :AuthService, private router:Router) {}
+  constructor(private fb: FormBuilder , private auth :AuthService, private router:Router, private toast:ToastrService) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -40,17 +41,20 @@ export class LogInComponent {
         next: (response) => {
           if(response.result==1){
             console.log('login successful:', response);
-            alert('login successful!');
-            this.router.navigate(['/dashboard'])
+            // alert('login successful!');
+            this.toast.success('login successful!')
+            this.router.navigate(['/dashboard']);
           }         
           if(response.result==2){
             console.log('Username or password is incorrect :', response);
-            alert('Username or password is incorrect!');
+            // alert('Username or password is incorrect!');
+            this.toast.error('Username or password is incorrect!');
           }         
         },
         error: (error) => {
           console.log('login failed:', error);
-          alert('login failed!');
+          // alert('login failed!');
+          this.toast.error('login failed!');
         },
       })
 

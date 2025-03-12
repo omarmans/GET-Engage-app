@@ -2,20 +2,23 @@ import { Component, inject, OnInit } from '@angular/core';
 import { SearchComponent } from '../../shared/search/search.component';
 import { CommonModule } from '@angular/common';
 import { HeaderTitleComponent } from '../../shared/header-title/header-title.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Merchant } from '../../models/Merchant.model';
-import { merchantArray } from '../models/merchantArray';
 import { MerchantService } from '../services/merchant.service';
+import { AssignVousherComponent } from "../assign-vousher/assign-vousher.component";
 
 @Component({
   selector: 'app-merchants',
   standalone: true,
-  imports: [SearchComponent, CommonModule, HeaderTitleComponent],
+  imports: [SearchComponent, CommonModule, HeaderTitleComponent, AssignVousherComponent],
   templateUrl: './merchants.component.html',
   styleUrl: './merchants.component.scss',
 })
 export class MerchantsComponent implements OnInit {
   Merchants! :Merchant[];
+  showForm = false;
+  filteredMerchants: Merchant[] = [];
+
   router = inject(Router);
   constructor(private merchant:MerchantService){
     
@@ -28,6 +31,7 @@ export class MerchantsComponent implements OnInit {
       next:(response)=>{
         console.log('API Response:', response);
         this.Merchants=response.data || [];
+        this.filteredMerchants = [...this.Merchants]; 
       },
       error:(error)=>{
         console.log('API error:', error);
@@ -39,7 +43,16 @@ export class MerchantsComponent implements OnInit {
     this.router.navigate(['/add-merchants']);
   }
 
-  merchantDetails(id: number) {
-    this.router.navigate(['/merchant-details', +id]);
+  merchantDetails(name: string) {
+    this.router.navigate(['/merchant-details', name]);
   }
+  
+  route = inject(ActivatedRoute);
+  
+  onSearchTextChanged(searchText: string) {
+    this.filteredMerchants = this.Merchants.filter(merchant =>
+      merchant.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+  }
+
 }

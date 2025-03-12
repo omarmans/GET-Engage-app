@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { VouchersService } from '../services/vouchers.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-voucher',
@@ -22,7 +23,7 @@ export class AddVoucherComponent implements OnInit {
   discount: number=0;
   voucherForm!: FormGroup;
 
-  constructor(private fb: FormBuilder,private route: ActivatedRoute,private router :Router, private voucher:VouchersService) {
+  constructor(private fb: FormBuilder,private route: ActivatedRoute,private toast:ToastrService,private router :Router, private voucher:VouchersService) {
     
   }
 
@@ -54,15 +55,16 @@ export class AddVoucherComponent implements OnInit {
       // console.log('Form Data:', this.voucherForm.value);
       // alert('Voucher Added Successfully!');
       // this.voucherForm.reset();
+      console.log('voucher object :',this.voucherForm.value)
       this.voucher.addvoucher(this.voucherForm.value).subscribe({
         next:(response)=>{
           console.log('added voucher successful!',response);
-          alert('added voucher successful!');
+          this.toast.success('added voucher successful!');
           this.router.navigate(['/vouchers'])
         },
         error:(error)=>{
           console.log('failed voucher sorry!',error);
-          alert('failed voucher sorry!');
+          this.toast.error('failed voucher sorry!');
         }
       })
 

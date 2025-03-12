@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'merchants', component: MerchantsComponent },
   { path: 'add-merchants', component: AddMerchantComponent },
-  { path: 'merchant-details/:id', component: MerchantDetailsComponent },
+  { path: 'merchant-details/:name', component: MerchantDetailsComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'vouchers', component: VouchersComponent },
   { path: 'add-voucher', component: AddVoucherComponent },

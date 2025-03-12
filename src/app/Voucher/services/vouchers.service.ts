@@ -8,19 +8,22 @@ import { Voucher } from '../../models/Vousher.model';
 })
 export class VouchersService {
   private api='http://10.3.21.25:8109/api/app/voucher/voucher';
-
+private details='http://10.3.21.25:8109/api/app/voucher/voucher-details';
   constructor(private http:HttpClient) { }
 
    addvoucher(data:any):Observable<any>{
-      return this.http.post<any>(this.api, data, {
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest'
-        }
-    });
+      return this.http.post<any>(this.api, data);
   }
-   getvouchers(): Observable<Voucher[]> {
-    return this.http.get<Voucher[]>(this.api).pipe(
+   getvouchers(): Observable<{ data: Voucher[]} > {
+    return this.http.get<{ data: Voucher[] }>(this.api).pipe(
+      catchError(error => {
+        console.error('Error fetching vouchers:', error);
+        return throwError(() => new Error('Failed to fetch vouchers.'));
+      })
+    );
+  }
+   getvouchersdetails(): Observable<{ data: Voucher[]} > {
+    return this.http.get<{ data: Voucher[] }>(this.details).pipe(
       catchError(error => {
         console.error('Error fetching vouchers:', error);
         return throwError(() => new Error('Failed to fetch vouchers.'));

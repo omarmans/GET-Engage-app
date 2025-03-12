@@ -11,6 +11,8 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 })
 export class HeaderComponent {
   activeLinkIndex: number = 0;
+  // logged=
+  // if(localStorage.getItem('logged'));
   setActiveLink(index: number): void {
     this.activeLinkIndex = index;
   }
@@ -29,6 +31,11 @@ export class HeaderComponent {
       i: 'fa-solid fa-cart-shopping',
 
       href: 'vouchers',
+    },
+    {
+      i: 'fa-solid fa-arrow-right-from-bracket',
+
+      href: '',
     },
   ];
 }

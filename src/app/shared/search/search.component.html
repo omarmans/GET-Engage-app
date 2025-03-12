@@ -1,5 +1,9 @@
-
-    <div class="search">
-      <Input type="text" placeholder="Search..." class="searchinput"/>
-      <!-- <Button>Search</Button> -->
-    </div>
+<div class="search">
+  <input 
+    type="text" 
+    placeholder="Search..." 
+    class="searchinput" 
+    [(ngModel)]="text" 
+    (input)="onSearchChange()"
+  />
+</div>

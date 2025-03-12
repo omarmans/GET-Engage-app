@@ -1,6 +1,5 @@
 .container {
     background-color: #eee;
-
     width: 100%;
     min-height: 100vh;
 }
@@ -111,4 +110,19 @@ color: #000000;
   .used-false {
     color: red;
     font-weight: bold;
+  }
+  .merchant-image{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }
+  .merchant-info{
+    display: flex;
+    padding-left: 3%;
+  }
+  h2{
+    font-size: x-large;
+    font-weight: bolder;
+    justify-content: center;
+    margin: auto;
   }

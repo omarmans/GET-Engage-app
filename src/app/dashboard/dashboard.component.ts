@@ -1,10 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Merchant } from '../Merchant/models/Mecrhant.model';
-import { merchantArray } from '../Merchant/models/merchantArray';
-import { Voucher } from '../Merchant/models/vousher.model';
+
 import { HeaderTitleComponent } from '../shared/header-title/header-title.component';
 import { CommonModule } from '@angular/common';
+import { Merchant } from '../models/Merchant.model';
+import { Voucher } from '../models/Vousher.model';
+import { MerchantService } from '../Merchant/services/merchant.service';
+import { VouchersService } from '../Voucher/services/vouchers.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,46 +18,21 @@ import { CommonModule } from '@angular/common';
 export class DashboardComponent implements OnInit {
   showPopup: boolean=false;
   showPopupmerchant: boolean=false;
+ 
+  constructor(private mer:MerchantService, private vou:VouchersService){}
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.merchant = this.Merchants.find((m: Merchant) => m.id === id);
-    console.log(this.merchant);
+    this.getmer();
+    this.getvou();
+
   }
   showForm = false;
   showTable = false;
-  merchant?: Merchant;
-  Merchants: Merchant[] = merchantArray;
+  Merchants!: Merchant[];
   route = inject(ActivatedRoute);
 
-  vouchers: Voucher[] = [
-    {
-      id: 1,
-      merchantAssignedDate: '2025-01-01',
-      clientAssignedDate: '2025-01-05',
-      valid: true,
-      discountAmount: 50,
-      commission: 10,
-      used: true,
-    },
-    {
-      id: 2,
-      merchantAssignedDate: '2025-01-02',
-      clientAssignedDate: '2025-01-06',
-      valid: false,
-      discountAmount: 30,
-      commission: 5,
-      used: false,
-    },
-    {
-      id: 3,
-      merchantAssignedDate: '2025-01-03',
-      clientAssignedDate: '2025-01-07',
-      valid: true,
-      discountAmount: 20,
-      commission: 3,
-      used: true,
-    },
-  ];
+  vouchers!: Voucher[] 
+  novou:number=0;
+  nomer:number=0;
 
   onShowTable() {
     this.showTable = !this.showTable;
@@ -73,5 +50,29 @@ export class DashboardComponent implements OnInit {
   }
   closePopupmerchant(){
     this.showPopupmerchant=false;
+  }
+  getmer(){
+    this.mer.getmerchant().subscribe({
+      next:(res)=>{
+        this.Merchants=res.data||[]
+        console.log('respone mer',this.Merchants);
+        this.nomer=res.data.length;
+      },
+      error:(error)=>{
+        console.log(error,'error')
+      }
+    })
+  }
+  getvou(){
+    this.vou.getvouchers().subscribe({
+      next:(res)=>{
+        this.vouchers=res.data||[]
+        console.log('respone voucher',this.vouchers);
+        this.novou=res.data.length;
+      },
+      error:(error)=>{
+        console.log(error,'error')
+      }
+    })
   }
 }

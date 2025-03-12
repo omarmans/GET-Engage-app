@@ -4,16 +4,19 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { Router,RouterModule } from '@angular/router';
 import { VouchersService } from '../services/vouchers.service';
 import { Voucher } from '../../models/Vousher.model';
+import { SearchComponent } from "../../shared/search/search.component";
+import { HideLongNamePipe } from '../../shared/pipes/hide-long-name.pipe';
 
 @Component({
   selector: 'app-vouchers',
   standalone: true,
-  imports: [CarouselModule,CommonModule,RouterModule],
+  imports: [CarouselModule, CommonModule, RouterModule, HideLongNamePipe],
   templateUrl: './vouchers.component.html',
   styleUrl: './vouchers.component.scss'
 })
 export class VouchersComponent implements OnInit {
   vouchers! : Voucher[];
+  filteredVouchers: Voucher[] = [];
   
 
   constructor(private router :Router ,private voucher:VouchersService){
@@ -26,7 +29,8 @@ export class VouchersComponent implements OnInit {
     this.voucher.getvouchers().subscribe({
       next: (response) => {
         console.log('API Response:', response);
-        this.vouchers = response || [];
+        this.vouchers = response.data || [];
+        this.filteredVouchers=[...this.vouchers];
       },
       error: (error) => {
         console.error('API error:', error);
@@ -58,7 +62,10 @@ export class VouchersComponent implements OnInit {
     return item.id;
   }
   isActive(card: any): boolean {
-    return card.quantity > 0; 
+    const currentDate = new Date().getTime();
+    const validDate = new Date(card.validDate).getTime();
+  
+    return card.avaliableBalance > 0 && currentDate < validDate;
   }
   toggleMenu(card: any) {
     card.showMenu = !card.showMenu;
@@ -75,6 +82,10 @@ export class VouchersComponent implements OnInit {
       queryParams: { title: 'Edit TimeFrame', name: card.name , discount: card.discount}
     });
   }
-  
+  onSearchTextChanged(searchText: string) {
+    this.filteredVouchers = this.vouchers.filter(voucher =>
+      voucher.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+  }
   
 }

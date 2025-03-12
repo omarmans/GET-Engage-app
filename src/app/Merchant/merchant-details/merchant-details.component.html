@@ -1,21 +1,18 @@
-<div class="container">
+ <div class="container">
     <app-header-title>
         <header>
-            <h2>
-                {{merchant?.companyTitle}}
-            </h2>
-            <div class="add-button">
-                <button (click)="showForm = true">Assign Voucher</button>
-            </div>
+            <div class="merchant-info">
+                <img [src]="merchant?.picURL" alt="Merchant Image" class="merchant-image" />
+                <h2>{{ merchant?.name }}</h2>
+            </div>            
         </header>
-        <!-- <button>Assign Voucher</button> -->
 
     </app-header-title>
 
     <app-assign-vousher 
         [showForm]="showForm" 
         (closeForm)="showForm = false">
-    </app-assign-vousher>
+    </app-assign-vousher> 
 
     <div class="voushers">
 
@@ -24,21 +21,27 @@
                 <i class="fa-solid fa-gift"></i>
                 <span>Total vouchers</span>
             </div>
-            <p>{{merchant?.totalVouchers}}</p>
+            <!-- <p>{{merchant?.totalVouchers}}</p> -->
+          
+            <p>150</p>
         </div>
         <div  class="vousher">
             <div class="vousher-header">
                 <i class="fa-solid fa-user-check"></i>
                 <span>Total of used vouchers</span>
             </div>
-            <p>{{merchant?.totalUsedVouchers}}</p>
+            <!-- <p>{{merchant?.totalUsedVouchers}}</p> -->
+            <p>150</p>
+
         </div>
         <div  class="vousher">
             <div class="vousher-header">
                 <i class="fa-solid fa-paperclip"></i>
                 <span>Total unused vouchers</span>
             </div>
-            <p>{{merchant?.totalUnusedVouchers}}</p>
+            <!-- <p>{{merchant?.totalUnusedVouchers}}</p> -->
+            <p>150</p>
+
         </div>
     </div>
 
@@ -51,14 +54,18 @@
                     <i class="fa-solid fa-paperclip"></i>
                     <span>Pending Commission</span>
                 </div>
-                <p>{{merchant?.pendingCommission}} EGP</p>
+                <!-- <p>{{merchant?.pendingCommission}} EGP</p> -->
+                <p>150334</p>
+
             </div>
             <div class="commission">
                 <div class="commission-header">
                     <i class="fa-solid fa-user-check"></i>
                     <span>Paid  Commission</span>
                 </div>
-                <p>{{merchant?.paidCommission}} EGP</p>
+                <!-- <p>{{merchant?.paidCommission}} EGP</p> -->
+                <p>150</p>
+
             </div>
 
         </div>
@@ -93,4 +100,4 @@
           </tbody>
         </table>
       </div>
-</div>
+</div> 

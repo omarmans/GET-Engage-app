@@ -11,3 +11,12 @@
     margin: auto;
     padding-bottom: 10%;
 }
+
+@media (max-width:686px) {
+    .imgs{
+        font-size: small;
+        margin: 0;
+        padding: 0;
+        // text-align: left;
+    }
+}
