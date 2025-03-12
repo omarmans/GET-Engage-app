@@ -1,5 +1,6 @@
 <div class="page d-flex">
-  <div class="sidebar  p-relative">
+  <div class="sidebar  p-relative" >
+    <img src="Media.jfif">
     <!-- <img src="getGroup.png" class="" alt="" /> -->
     <ul>
       <li *ngFor="let link of classesArray; let i = index">
@@ -8,7 +9,7 @@
           routerLinkActiveOptions="{ exact: true }"
           [routerLink]="link.href"
           (click)="setActiveLink(i)"
-          class="d-flex align-center fs-14 c-black rad-6 p-10"
+          class="d-flex  fs-14 c-black rad-6 mb-2  p-1"
         >
           <i  class="imgs" [ngClass]="link.i"></i>
         </a>

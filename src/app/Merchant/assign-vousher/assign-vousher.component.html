@@ -1,21 +1,26 @@
 <div class="overlay" (click)="close()" *ngIf="showForm"></div>
 <div class="form-popup" *ngIf="showForm">
   <button class="close-btn" (click)="close()">&times;</button>
-  <form>
+  <form [formGroup]="assignForm"  (ngSubmit)="assignVoucher()" >
     <div class="form-group">
-      <label for="">Merchant Name :</label>
-      <input type="text" placeholder="add-Merchant">
-    </div>
+      <label for="merchant" >Merchant Name :</label>
+      <select id="merchant" formControlName="merchantId">
+        <option *ngFor="let merchant of merchants" [value]="merchant.id">
+          {{merchant.name}}
+        </option>
+      </select>
+      </div>
     <div class="form-group">
-      <label for="">Discount :</label>
-      <select>
-        <option>Discount 1 , Available :150</option>
-        <option>Discount 2 , Available :300</option>
+      <label for="discount">Discount :</label>
+      <select id="discount" formControlName="voucherId">
+        <option *ngFor="let voucher of vouchers" [value]="voucher.id">
+          Name:{{voucher.name}},Quantity:{{voucher.avaliableBalance}}
+        </option>
       </select>
     </div>
     <div class="form-group">
       <label for="">Quntity</label>
-      <input type="text" placeholder="add-quantity">
+      <input type="text" placeholder="add-quantity" formControlName="quantity">
     </div>
     <button type="submit">Submit</button>
   </form>

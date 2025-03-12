@@ -2,11 +2,10 @@ import { Component, inject, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../header/header.component';
 import { HeaderTitleComponent } from '../../shared/header-title/header-title.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Merchant } from '../models/Mecrhant.model';
-import { merchantArray } from '../models/merchantArray';
 import { AssignVousherComponent } from '../assign-vousher/assign-vousher.component';
 import { CommonModule } from '@angular/common';
-import { Voucher } from '../models/vousher.model';
+import { Merchant } from '../../models/Merchant.model';
+import { MerchantService } from '../services/merchant.service';
 
 @Component({
   selector: 'app-merchant-details',
@@ -16,18 +15,14 @@ import { Voucher } from '../models/vousher.model';
   styleUrl: './merchant-details.component.scss',
 })
 export class MerchantDetailsComponent implements OnInit {
-  ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.merchant = this.Merchants.find((m: Merchant) => m.id === id);
-    console.log(this.merchant);
-  }
+ 
   showForm = false;
   showTable = false;
   merchant?: Merchant;
-  Merchants: Merchant[] = merchantArray;
+  Merchants!: Merchant[] ;
   route = inject(ActivatedRoute);
 
-  vouchers: Voucher[] = [
+  vouchers: any[] = [
     {
       id: 1,
       merchantAssignedDate: '2025-01-01',
@@ -57,11 +52,37 @@ export class MerchantDetailsComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private merchantService: MerchantService) {}
 
   onShowTable() {
     this.router.navigate(['/pending-commission'], {
-      queryParams: { companyTitle: this.merchant?.companyTitle }
+      queryParams: { companyTitle: this.merchant?.name }
     });
   }
+
+  ngOnInit(): void {
+    const name = this.route.snapshot.paramMap.get('name');
+    if (name) {
+      this.getMerchantDetails(name);
+    }
+    
+  }
+
+  getMerchantDetails(name: string) {
+    this.merchantService.getmerchantByname(name).subscribe({
+      next: (response) => {
+        if (response.isSuccess) {
+          this.merchant = response.data;
+          console.log('Merchant Details:', this.merchant);
+        } else {
+          console.log('Error:', response.erorrs);
+        }
+      },
+      error: (error) => {
+        console.log('Error fetching merchant details:', error);
+      }
+    });
+  }
+
+// }
 }

@@ -6,6 +6,7 @@ import { MerchantService } from '../services/merchant.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-merchant',
   standalone: true,
@@ -15,16 +16,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './add-merchant.component.scss',
 })
 export class AddMerchantComponent {
-  
-  
   addMerchant: FormGroup;
   selectedFile: File | null = null;
   picurl:string='';
-  constructor(private fb: FormBuilder , private router:Router, private merchant:MerchantService) {
+  constructor(private fb: FormBuilder , private router:Router, private merchant:MerchantService , private toast: ToastrService) {
     this.addMerchant = this.fb.group({
       name: [''],
       description: [''],
-      picURL: [this.picurl]
+      picURL: ['']
     });
   }
 
@@ -32,12 +31,13 @@ export class AddMerchantComponent {
     const file = event.target.files[0];
     if (file && file.type.startsWith('image/')) {
       this.selectedFile = file;
-      this.picurl= this.selectedFile ? this.selectedFile.name : '' ;
+      this.picurl = this.selectedFile?.name || '';
+      
+      this.addMerchant.patchValue({ picURL: this.picurl });
     } else {
       alert('Please select a valid image file.');
     }
   }
-  
 
   add() {
     if (this.addMerchant.invalid) {
@@ -49,19 +49,19 @@ export class AddMerchantComponent {
       next: (response: any) => {
         console.log('Response:', response);
         
-        if (response.isSuccess) {
-          alert('Merchant added successfully!');
+        // if (response.isSuccess) {
+        this.toast.success('Merchant added successfully!');
           this.addMerchant.reset();
           this.selectedFile = null;
           this.router.navigate(['/merchants']);
-        } else {
-          const errorMessage = response.erorrs?.[0]?.message || 'Error adding merchant!';
-          alert(errorMessage);
-        }
+        // } else {
+        //   const errorMessage = response.erorrs?.[0]?.message || 'Error adding merchant!';
+        //   alert(errorMessage);
+        // }
       },
       error: (error) => {
         console.error('Error adding merchant', error);
-        alert('Error adding merchant!');
+        this.toast.error('Error adding merchant!');
       }
     });
   }

@@ -15,7 +15,7 @@
                 <span>Total number of vouchers</span>
             </div>
             <!-- <p>{{merchant?.totalVouchers}}</p> -->
-            <p>{{150}}</p>
+            <p>{{novou}}</p>
         </div>
         <div  class="vousher" (click)="totalmerchant()">
             <div class="vousher-header">
@@ -23,7 +23,7 @@
                 <span>Total number of merchants</span>
             </div>
             <!-- <p>{{merchant?.totalUsedVouchers}}</p> -->
-            <p>{{2}}</p>
+            <p>{{nomer}}</p>
         </div>
         <div  class="vousher">
             <div class="vousher-header">
@@ -39,22 +39,20 @@
         <img src="stat.png" alt="">
         <img src="DiscountTypes.png" alt="">
     </div>
-    <div class="popup-overlay" *ngIf="showPopup">
-        <div class="popup">
+    <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
+        <div class="popup" (click)="$event.stopPropagation()">
             <h3>Vouchers List</h3>
             <table>
                 <thead>
                     <tr>
-                        <th>Voucher ID</th>
+                        <th>Discount Name</th>
                         <th>Discount Value</th>
-                        <th>Used</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let voucher of vouchers">
-                        <td>{{ voucher.id }}</td>
-                        <td>{{ voucher.discountAmount }} %</td>
-                        <td>{{ voucher.used ? 'Yes' : 'No' }}</td>
+                        <td>{{ voucher.name }}</td>
+                        <td>{{ voucher.discountValue }} %</td>
                     </tr>
                 </tbody>
             </table>
@@ -62,8 +60,8 @@
         </div>
     </div>
     
-    <div class="popup-overlay" *ngIf="showPopupmerchant">
-        <div class="popup">
+    <div class="popup-overlay" *ngIf="showPopupmerchant" (click)="closePopup()">
+        <div class="popup" (click)="$event.stopPropagation()">
             <h3>Merchants List</h3>
             <table>
                 <thead>
@@ -75,7 +73,7 @@
                 <tbody>
                     <tr *ngFor="let merchant of Merchants">
                         <td>{{ merchant.id }}</td>
-                        <td>{{ merchant.companyTitle }}</td>
+                        <td>{{ merchant.name }}</td>
                     </tr>
                 </tbody>
             </table>

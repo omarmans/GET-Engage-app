@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LogInComponent } from './auth/components/log-in/log-in.component';
 import { HeaderComponent } from './header/header.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +13,10 @@ import { HeaderComponent } from './header/header.component';
 })
 export class AppComponent {
   title = 'GET-Engage-app';
+  constructor(private tost:ToastrService)
+  {}
+
+  testTOS(){
+    this.tost.success("hala")
+  }
 }

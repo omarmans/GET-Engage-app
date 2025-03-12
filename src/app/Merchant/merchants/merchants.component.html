@@ -5,24 +5,36 @@
     <header>
       <h2>Merchants</h2>
 
-      <div class="add-button">
-        <button (click)="addMerchant()">+ Add Merchant</button>
+      <div class="btn flex w-full justify-end ">
+        <div class="add-button ">
+          <button (click)="addMerchant()">+ Add Merchant</button>
+        </div>
+        <div class="add-button">
+          <button (click)="showForm = true">Assign Voucher</button>
+      </div>
       </div>
     </header>
+
   </app-header-title>
+  <app-assign-vousher 
+  [showForm]="showForm" 
+  (closeForm)="showForm = false">
+</app-assign-vousher> 
+
   
   <!-- searechComponents -->
-  <app-search />
+  <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
 
   <div class="Merchants">
-    @for ( Merchant of Merchants; track Merchant.id) {
+    @for ( Merchant of filteredMerchants; track Merchant.id) {
       <div class="Merchant">
 
         <div class="name">
-          <i [ngClass]="Merchant.picURL"></i>
+       
+           <img [src]="Merchant.picURL" alt="" class="">
           <h2>{{Merchant.name}}</h2>
         </div>
-        <button (click)="merchantDetails(Merchant.id)">Details</button>
+        <button (click)="merchantDetails(Merchant.name)">Details</button>
       </div>
     }
   </div>

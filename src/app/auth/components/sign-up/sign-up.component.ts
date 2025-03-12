@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-up',
@@ -22,13 +23,13 @@ export class SignUpComponent {
   signUpForm: FormGroup;
   hidePassword = true;
   hideConfirmPassword = true;
-
+private tost=inject(ToastrService)
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.signUpForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
         type: ['', Validators.required],
       },
       { validator: this.passwordsMatchValidator }
@@ -53,12 +54,13 @@ export class SignUpComponent {
       this.authService.register(userData).subscribe({
         next: (response) => {
           console.log('Registration successful:', response);
-          alert('Registration successful!');
+          // alert('Registration successful!');
+          this.tost.success('Registration successful!');
 
         },
         error: (error) => {
           console.error('Registration failed:', error);
-          alert('Registration failed. Please try again.');
+          this.tost.error('Registration failed. Please try again.');
         },
       });
 
