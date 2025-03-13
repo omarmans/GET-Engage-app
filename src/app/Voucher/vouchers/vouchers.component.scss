@@ -1,46 +1,50 @@
-.container{
-    min-width: 100%;
-    height: 100vh;
-    background-color: #dedede;
+.container {
+  min-width: 100%;
+  height: 100vh;
+  background-color: #dedede;
 }
-header{
-    display: flex;
-    background-color: white;
-    width: 100%;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
-    margin-bottom: 30px;
+header {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 30px;
 }
-.add-button{
-    width: 85%;
-    text-align: right;
-    align-content: center;
+.add-button {
+  width: 85%;
+  text-align: right;
+  align-content: center;
 }
-.link{color: white;}
-.add-button button{
-    padding: 1%;
-    background-color: #033C5B;
-    border: 1px solid #033C5B;
-    color: white;
-    border-radius: 10px;
+.link {
+  color: white;
 }
-h2{padding-left: 2%;font-size: xx-large;}
-.search{
-    padding: 1%;
+.add-button button {
+  padding: 1%;
+  background-color: #033c5b;
+  border: 1px solid #033c5b;
+  color: white;
+  border-radius: 10px;
 }
-.searchinput{
-    background-color: white;
-    border: 1px solid #dedede;
-    padding: 0.7%;
-    width: 20%;
-    border-radius: 10px;
+h2 {
+  padding-left: 2%;
+  font-size: xx-large;
 }
-.cards{
-    width: 100%;
-    height: 100vh;
-    
+.search {
+  padding: 1%;
+}
+.searchinput {
+  background-color: white;
+  border: 1px solid #dedede;
+  padding: 0.7%;
+  width: 20%;
+  border-radius: 10px;
+}
+.cards {
+  width: 100%;
+  height: 100vh;
 }
 .card {
+<<<<<<< HEAD
     padding: 3%;
     height: 60vh;
     width:60%;
@@ -117,22 +121,93 @@ h2{padding-left: 2%;font-size: xx-large;}
 .btn-vou{
     width: 100%;
     text-align: center;
+=======
+  padding: 3%;
+  height: 60vh;
+  width: 60%;
+  margin: auto;
+  border-radius: 20px;
+  position: relative;
+  border: 1px solid #dedede;
+  background-color: rgb(255, 255, 255);
 }
-.btn-vou button{
-    padding: 3%;
-    color: white;
-    border: 1px solid #033C5B;
-    background-color: #033C5B;
-    border-radius: 8px;
-    transition: 300ms;
-    font-size: large;
+
+.name {
+  font-size: large;
+  color: #033c5b;
+  height: 30px;
+>>>>>>> assignVousher
 }
-.btn-vou button:hover{
-    padding: 3%;
-    color: #033C5B;
-    border: 1px solid #033C5B;
-    background-color: white;
-    border-radius: 8px;
+hr {
+  width: 80%;
+}
+.discount {
+}
+
+.value {
+  font-size: 250%;
+  font-weight: bold;
+  color: #033c5b;
+}
+.para {
+  font-size: small;
+  color: #b6b6b6;
+}
+
+.date {
+  color: #b9b9b9;
+  font-size: 12px;
+  padding-top: 12%;
+}
+
+.desc p {
+  font-size: medium;
+  color: #033c5b;
+  padding: 2%;
+}
+
+.timeframe .time {
+  font-size: 14px;
+}
+.fa-solid {
+  font-size: larger;
+  color: #033c5b;
+}
+.owl-item {
+  transition: 800ms ease-in-out;
+}
+
+::ng-deep .owl-item {
+  transition: 800ms ease-in-out;
+}
+
+::ng-deep .owl-item.active.center .card {
+  width: 68% !important;
+  height: 68vh !important;
+  box-shadow: 0px 2px 10px rgba(60, 94, 158, 0.788);
+  border-radius: 25px;
+  z-index: 2;
+}
+
+.btn-vou {
+  width: 100%;
+  text-align: center;
+}
+.btn-vou button {
+  padding: 3%;
+  color: white;
+  border: 1px solid #033c5b;
+  background-color: #033c5b;
+  border-radius: 8px;
+  transition: 300ms;
+  font-size: large;
+}
+.btn-vou button:hover {
+  padding: 3%;
+  color: #033c5b;
+  border: 1px solid #033c5b;
+  background-color: white;
+  border-radius: 8px;
 }
 .status-badge {
   position: absolute;
@@ -147,17 +222,17 @@ h2{padding-left: 2%;font-size: xx-large;}
 }
 
 .status-badge.active {
-  border-bottom:1px solid green;
-  border-left:1px solid green;
-  border-top:1px solid green;
- 
+  border-bottom: 1px solid green;
+  border-left: 1px solid green;
+  border-top: 1px solid green;
+
   color: green;
 }
 
 .status-badge.not-active {
-  border-bottom:1px solid red;
-  border-top:1px solid red;
-  border-left:1px solid red;
+  border-bottom: 1px solid red;
+  border-top: 1px solid red;
+  border-left: 1px solid red;
   color: red;
 }
 .menu-container {
@@ -171,7 +246,7 @@ h2{padding-left: 2%;font-size: xx-large;}
   border: none;
   font-size: 20px;
   cursor: pointer;
-  color: #033C5B;
+  color: #033c5b;
 }
 
 .menu-dropdown {
@@ -186,7 +261,6 @@ h2{padding-left: 2%;font-size: xx-large;}
   z-index: 10;
 }
 
-
 .menu-dropdown button {
   width: 100%;
   padding: 8px;
@@ -195,13 +269,13 @@ h2{padding-left: 2%;font-size: xx-large;}
   text-align: left;
   cursor: pointer;
   font-size: 14px;
-  color: #033C5B;
+  color: #033c5b;
 }
 
 .menu-dropdown button:hover {
   background: #f0f0f0;
 }
-.desc{
+.desc {
   padding-top: 19%;
 }
 

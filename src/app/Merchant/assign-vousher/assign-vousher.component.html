@@ -1,27 +1,39 @@
 <div class="overlay" (click)="close()" *ngIf="showForm"></div>
 <div class="form-popup" *ngIf="showForm">
   <button class="close-btn" (click)="close()">&times;</button>
-  <form [formGroup]="assignForm"  (ngSubmit)="assignVoucher()" >
+
+  <form [formGroup]="assignForm" (ngSubmit)="assignVoucher()">
     <div class="form-group">
-      <label for="merchant" >Merchant Name :</label>
+      <label for="merchant">Merchant Name:</label>
       <select id="merchant" formControlName="merchantId">
         <option *ngFor="let merchant of merchants" [value]="merchant.id">
-          {{merchant.name}}
+          {{ merchant.name }}
         </option>
       </select>
-      </div>
+    </div>
+
     <div class="form-group">
-      <label for="discount">Discount :</label>
+      <label for="discount">Discount:</label>
       <select id="discount" formControlName="voucherId">
         <option *ngFor="let voucher of vouchers" [value]="voucher.id">
-          Name:{{voucher.name}},Quantity:{{voucher.avaliableBalance}}
+          Name: {{ voucher.name }} -{{ "   " }} Quantity:
+          {{ voucher.avaliableBalance }}
         </option>
       </select>
     </div>
+
     <div class="form-group">
-      <label for="">Quntity</label>
-      <input type="text" placeholder="add-quantity" formControlName="quantity">
+      <label for="quantity">Quantity</label>
+      <input
+        type="number"
+        placeholder="Enter quantity"
+        formControlName="number"
+      />
+      <div *ngIf="quantityExceeds" class="error-message">
+        Entered quantity exceeds available balance!
+      </div>
     </div>
-    <button type="submit">Submit</button>
+
+    <button type="submit" [disabled]="assignForm.invalid">Submit</button>
   </form>
 </div>

@@ -1,76 +1,77 @@
-.container{
-    position: absolute;
-    top: 0;
-    min-width: 95%;
-    height: 100vh;
-    background-color: #dedede;
+.container {
+  position: absolute;
+  top: 0;
+  min-width: 95%;
+  height: 100vh;
+  background-color: #dedede;
 }
-h2{padding-left: 2%;font-size: xx-large;}
-header{
-    display: flex;
-    background-color: white;
-    width: 100%;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
-}
-.group{
-    padding: 3%;
-    width: 100%;
-    justify-content: center;
-    justify-items: center;
+
+.group {
+  margin-top: 10px;
+  width: 100%;
+  justify-content: center;
+  justify-items: center;
 }
 form {
-    width: 40%;
-    padding: 3%;
-    border-radius: 15px;
-    background-color: white;
-    gap: 88px; 
-    align-items: center;
-  }
-  .form-group{
-    padding-bottom: 6%;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0px 2px 4px #6bb2d8;
-  }
-  
-  small {
-    color: red;
-    font-size: 12px;
-    grid-column: span 2;
-  }
-  .input{
-    text-align: center;
-  }
-  button {
-    grid-column: span 2; 
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #033C5B;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: larger;
-    cursor: pointer;
-  }
-  
-  button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  textarea{
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0px 2px 4px #6bb2d8;
-  }
+  width: 40%;
+  padding: 3%;
+  border-radius: 15px;
+  background-color: white;
+  gap: 88px;
+  align-items: center;
+}
+.form-group {
+  padding-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px #6bb2d8;
+}
+
+small {
+  color: red;
+  font-size: 12px;
+  grid-column: span 2;
+}
+.input {
+  text-align: center;
+}
+button {
+  grid-column: span 2;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #033c5b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: larger;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px #6bb2d8;
+}
+
+@media (max-width: 767px) {
+  // .container {
+  //   width: 100%;
+  // }
+}

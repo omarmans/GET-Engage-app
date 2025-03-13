@@ -1,10 +1,23 @@
-.search{
+.search {
   padding: 1%;
 }
-.searchinput{
+.searchinput {
   background-color: white;
   border: 1px solid #dedede;
   padding: 0.7%;
   width: 20%;
   border-radius: 10px;
+}
+
+@media (max-width: 767px) {
+  .search {
+    // text-align: center;
+    // width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    input {
+      width: 40%;
+    }
+  }
 }

@@ -1,9 +1,14 @@
-.content{
-    width: 95%;
+.content {
+  width: 95%;
 }
-.sidebar{
-    width: 5%;
+.sidebar {
+  width: 5%;
+  .logo {
+    filter: invert(1);
+    mix-blend-mode: difference;
+  }
 }
+<<<<<<< HEAD
 img{
     width: 200px;
 }
@@ -13,13 +18,21 @@ img{
     font-size: x-large;
     margin: auto;
     padding-bottom: 18%;
+=======
+.imgs {
+  text-align: center;
+  color: white;
+  font-size: x-large;
+  margin: auto;
+  padding-bottom: 10%;
+>>>>>>> assignVousher
 }
 
-@media (max-width:686px) {
-    .imgs{
-        font-size: small;
-        margin: 0;
-        padding: 0;
-        // text-align: left;
-    }
+@media (max-width: 686px) {
+  .imgs {
+    font-size: small;
+    margin: 0;
+    padding: 0;
+    // text-align: left;
+  }
 }
