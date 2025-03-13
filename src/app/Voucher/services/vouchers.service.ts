@@ -8,7 +8,8 @@ import { Voucher } from '../../models/Vousher.model';
 })
 export class VouchersService {
   private api='http://10.3.21.25:8109/api/app/voucher/voucher';
-private details='http://10.3.21.25:8109/api/app/voucher/voucher-details';
+  private details='http://10.3.21.25:8109/api/app/voucher/voucher-details';
+  private assigntoc='http://10.3.21.25:8109/api/app/voucher/{id}/assign-client-to-voucher-details';
   constructor(private http:HttpClient) { }
 
    addvoucher(data:any):Observable<any>{
@@ -30,4 +31,14 @@ private details='http://10.3.21.25:8109/api/app/voucher/voucher-details';
       })
     );
   }
+  assigntoclient(id: string, data: { name: string; phoneNmber: string; email: string }): Observable<any> {
+    const url = `http://10.3.21.25:8109/api/app/voucher/${id}/assign-client-to-voucher-details`;
+    return this.http.post<any>(url, data).pipe(
+      catchError(error => {
+        console.error('Error assigning voucher:', error);
+        return throwError(() => new Error('Failed to assign voucher.'));
+      })
+    );
+  }
+  
 }

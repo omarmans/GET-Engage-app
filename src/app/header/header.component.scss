@@ -8,12 +8,15 @@
     mix-blend-mode: difference;
   }
 }
+img {
+  width: 200px;
+}
 .imgs {
   text-align: center;
   color: white;
   font-size: x-large;
   margin: auto;
-  padding-bottom: 10%;
+  padding-bottom: 18%;
 }
 
 @media (max-width: 686px) {

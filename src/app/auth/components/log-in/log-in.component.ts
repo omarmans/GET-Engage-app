@@ -32,6 +32,7 @@ export class LogInComponent {
 
   onLogin(): void {
     if (this.loginForm.valid) {
+     
       const userData = {
         userNameOrEmailAddress: this.loginForm.get('email')?.value.split('@')[0], 
         password: this.loginForm.get('password')?.value,
@@ -43,7 +44,14 @@ export class LogInComponent {
             console.log('login successful:', response);
             // alert('login successful!');
             this.toast.success('login successful!')
-            this.router.navigate(['/dashboard']);
+            const email = this.loginForm.get('email')?.value;
+            this.auth.setUserEmail(email);
+            if(localStorage.getItem('userEmail')==='burak@gmail.com'){
+              this.router.navigate(['/mer-dashboard']);
+            }
+            else{
+              this.router.navigate(['/dashboard']);
+            }
           }         
           if(response.result==2){
             console.log('Username or password is incorrect :', response);

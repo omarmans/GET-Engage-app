@@ -1,0 +1,108 @@
+<div class="container">
+    <app-header-title>
+        <header>
+            <h2 class="flex">
+                <img src="chef-burak-logo.jpg" class="w-20">
+                <span class="m-auto rounded-full">{{'CAZ Burak'}}</span> 
+            </h2>
+        </header>
+        <!-- <button>Assign Voucher</button> -->
+    </app-header-title>
+
+    <div class="voushers">
+        <div class="vousher" (click)="total()">
+            <div class="vousher-header" >
+                <i class="fa-solid fa-gift"></i>
+                <span>Total number of vouchers</span>
+            </div>
+            <!-- <p>{{merchant?.totalVouchers}}</p> -->
+            <p>{{novou}}</p>
+        </div>
+        <div  class="vousher" (click)="totalmerchant()">
+            <div class="vousher-header">
+                <i class="fa-solid fa-user-check"></i>
+                <span>Total Used Voucher </span>
+            </div>
+            <!-- <p>{{merchant?.totalUsedVouchers}}</p> -->
+            <p>{{novou}}</p>
+        </div>
+        <div  class="vousher">
+            <div class="vousher-header">
+                <i class="fa-solid fa-paperclip"></i>
+                <span>Total Unused Voucher </span>
+            </div>
+            <!-- <p>{{merchant?.totalUnusedVouchers}}</p> -->
+            <p>{{0}}</p>
+        </div>
+    </div>
+
+    <div class="stat">
+        <img src="stat.png" alt="">
+        <img src="DiscountTypes.png" alt="">
+    </div>
+    <div class="cards">
+        <div  class="card" (click)="totalmerchant()">
+            <div class="vousher-header">
+<i class="fa-solid fa-check"></i>
+                <span>Total Commission Earned</span>
+            </div>
+            <!-- <p>{{merchant?.totalUsedVouchers}}</p> -->
+            <p>{{153000}}</p>
+        </div>
+        
+        <div  class="card" (click)="totalmerchant()">
+            <div class="vousher-header">
+                <i class="fa-regular fa-clock"></i>
+                <span>Pending Commission</span>
+            </div>
+            <!-- <p>{{merchant?.totalUsedVouchers}}</p> -->
+            <p>{{1555}}</p>
+        </div>
+    </div>
+    <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
+        <div class="popup" (click)="$event.stopPropagation()">
+            <h3>Vouchers List</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Voucher Name</th>
+                        <th>Voucher Value</th>
+                        <th>Voucher Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let voucher of vouchers">
+                        <td>{{ voucher.name }}</td>
+                        <td>{{ voucher.discountValue }} %</td>
+                        <td>{{ voucher.avaliableBalance }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button (click)="closePopup()">Close</button>
+        </div>
+    </div>
+    
+    <div class="popup-overlay" *ngIf="showPopupmerchant" (click)="closePopup()">
+        <div class="popup" (click)="$event.stopPropagation()">
+            <h3>Total Used Voucher </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Voucher Name</th>
+                        <th>Voucher Value</th>
+                        <th>Voucher Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let voucher of vouchers">
+                        <td>{{ voucher.name }}</td>
+                        <td>{{ voucher.discountValue }} %</td>
+                        <td>{{ voucher.avaliableBalance }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button (click)="closePopupmerchant()">Close</button>
+        </div>
+    </div>
+</div>
+    

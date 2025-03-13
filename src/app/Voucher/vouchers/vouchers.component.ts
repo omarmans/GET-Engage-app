@@ -6,8 +6,13 @@ import { VouchersService } from '../services/vouchers.service';
 import { Voucher } from '../../models/Vousher.model';
 import { SearchComponent } from '../../shared/search/search.component';
 import { HideLongNamePipe } from '../../shared/pipes/hide-long-name.pipe';
-import { ToastrService } from 'ngx-toastr';
-import { HeaderTitleComponent } from '../../shared/header-title/header-title.component';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-vouchers',
@@ -15,9 +20,9 @@ import { HeaderTitleComponent } from '../../shared/header-title/header-title.com
   imports: [
     CarouselModule,
     CommonModule,
+    ReactiveFormsModule,
     RouterModule,
     HideLongNamePipe,
-    HeaderTitleComponent,
   ],
   templateUrl: './vouchers.component.html',
   styleUrl: './vouchers.component.scss',
@@ -25,14 +30,27 @@ import { HeaderTitleComponent } from '../../shared/header-title/header-title.com
 export class VouchersComponent implements OnInit {
   vouchers!: Voucher[];
   filteredVouchers: Voucher[] = [];
+  userEmail: string | null = null;
+  isAssignPopupOpen = false;
+  selectedVoucher = '';
+  assignForm!: FormGroup;
 
   constructor(
     private router: Router,
     private voucher: VouchersService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private fb: FormBuilder
   ) {}
   ngOnInit(): void {
+    this.userEmail = localStorage.getItem('userEmail');
     this.loadVouchers();
+
+    this.assignForm = this.fb.group({
+      name: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern('^01[0-9]{9}$')]],
+      email: ['', [Validators.required, Validators.email]],
+      voucher: ['', Validators.required],
+    });
   }
   loadVouchers() {
     this.voucher.getvouchers().subscribe({
@@ -78,28 +96,38 @@ export class VouchersComponent implements OnInit {
     card.showMenu = !card.showMenu;
   }
 
-  addQuantity(card: any) {
-    this.router.navigate(['/add-voucher'], {
-      queryParams: {
-        title: 'Add Quantity',
-        name: card.name,
-        discount: card.discount,
-      },
-    });
+  openAssignPopup() {
+    this.isAssignPopupOpen = true;
   }
 
-  editTimeframe(card: any) {
-    this.router.navigate(['/add-voucher'], {
-      queryParams: {
-        title: 'Edit TimeFrame',
-        name: card.name,
-        discount: card.discount,
-      },
-    });
+  closeAssignPopup() {
+    this.isAssignPopupOpen = false;
+    this.assignForm.reset();
   }
-  onSearchTextChanged(searchText: string) {
-    this.filteredVouchers = this.vouchers.filter((voucher) =>
-      voucher.name.toLowerCase().includes(searchText.toLowerCase())
-    );
+
+  assignVoucher() {
+    if (this.assignForm.valid) {
+      const selectedVoucherId = this.assignForm.value.voucher;
+      const requestData = {
+        name: this.assignForm.value.name,
+        phoneNmber: this.assignForm.value.phone,
+        email: this.assignForm.value.email,
+      };
+
+      this.voucher.assigntoclient(selectedVoucherId, requestData).subscribe({
+        next: (response) => {
+          console.log('Voucher assigned successfully:', response);
+          this.toast.success('Voucher assigned successfully!');
+          this.closeAssignPopup();
+        },
+        error: (error) => {
+          console.error('Error assigning voucher:', error);
+          this.toast.error('Failed to assign voucher. Please try again later.');
+        },
+      });
+    } else {
+      console.log('Form is invalid');
+      this.assignForm.markAllAsTouched();
+    }
   }
 }

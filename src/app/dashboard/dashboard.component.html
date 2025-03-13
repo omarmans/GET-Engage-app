@@ -48,51 +48,49 @@
       >
       </canvas>
     </div>
-  </div>
 
-  <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
-    <div class="popup" (click)="$event.stopPropagation()">
-      <h3>Vouchers List</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Discount Name</th>
-            <th>Discount Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let voucher of vouchers">
-            <td>{{ voucher.name }}</td>
-            <td>{{ voucher.discountValue }} %</td>
-          </tr>
-        </tbody>
-      </table>
-      <button (click)="closePopup()">Close</button>
+    <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
+      <div class="popup" (click)="$event.stopPropagation()">
+        <h3>Vouchers List</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Voucher Name</th>
+              <th>Voucher Value</th>
+              <th>Voucher Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let voucher of vouchers">
+              <td>{{ voucher.name }}</td>
+              <td>{{ voucher.discountValue }} %</td>
+              <td>{{ voucher.avaliableBalance }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button (click)="closePopup()">Close</button>
+      </div>
     </div>
-  </div>
 
-  <div
-    class="popup-overlay"
-    *ngIf="showPopupmerchant"
-    (click)="closePopupmerchant()"
-  >
-    <div class="popup" (click)="$event.stopPropagation()">
-      <h3>Merchants List</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Merchant ID</th>
-            <th>Name Merchant</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let merchant of Merchants">
-            <td>{{ merchant.id }}</td>
-            <td>{{ merchant.name }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <button (click)="closePopupmerchant()">Close</button>
+    <div class="popup-overlay" *ngIf="showPopupmerchant" (click)="closePopup()">
+      <div class="popup" (click)="$event.stopPropagation()">
+        <h3>Merchants List</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Merchant ID</th>
+              <th>Name Merchant</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let merchant of Merchants">
+              <td>{{ merchant.id }}</td>
+              <td>{{ merchant.name }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button (click)="closePopupmerchant()">Close</button>
+      </div>
     </div>
   </div>
 </div>

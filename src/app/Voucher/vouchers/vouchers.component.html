@@ -2,8 +2,16 @@
   <header>
     <h2>Vouchers</h2>
     <div class="add-button">
-      <button class="add-voucher">
+      <button *ngIf="userEmail !== 'burak@gmail.com'" class="add-voucher">
         <a [routerLink]="'/add-voucher'" class="link">+ Add Voucher</a>
+      </button>
+
+      <button
+        *ngIf="userEmail === 'burak@gmail.com'"
+        class="assign-btn"
+        (click)="openAssignPopup()"
+      >
+        Assign to Client
       </button>
     </div>
   </header>
@@ -22,32 +30,156 @@
             {{ isActive(card) ? "Active" : "Not Active" }}
           </div>
 
-          <div class="w-9/12">
-            <!-- <p class="name">{{ card.name | hideLongName}}</p> -->
-            <p class="name">{{ card.name }}</p>
-          </div>
-          <div class="discount">
-            <p class="value">{{ card.discountValue }}%</p>
-            <p class="para">To whole price</p>
-          </div>
-          <p class="date">Created on {{ card.validDate }}</p>
-          <hr />
-          <div class="desc">
-            <p class="p1">
-              <i class="fa-solid fa-cart-plus"></i> Quantity:{{
-                card.avaliableBalance
-              }}
-            </p>
-            <div class="timeframe">
-              <p class="p1">Vaildation Date</p>
-              <p class="time">{{ card.validDate }}</p>
-            </div>
-          </div>
-          <!-- <div class="btn-vou">
+          <owl-carousel-o [options]="customOptions">
+            <ng-container
+              *ngFor="let card of filteredVouchers; trackBy: trackById"
+            >
+              <ng-template carouselSlide>
+                <div class="card">
+                  <div
+                    class="status-badge"
+                    [ngClass]="{
+                      active: isActive(card),
+                      'not-active': !isActive(card)
+                    }"
+                  >
+                    {{ isActive(card) ? "Active" : "Not Active" }}
+                  </div>
+
+                  <div class="w-9/12">
+                    <!-- <p class="name">{{ card.name | hideLongName}}</p> -->
+                    <p class="name">{{ card.name }}</p>
+                  </div>
+                  <div class="discount">
+                    <p class="value">{{ card.discountValue }}%</p>
+                    <p class="para">To whole price</p>
+                  </div>
+                  <p class="date">Created on {{ card.validDate }}</p>
+                  <hr />
+                  <div class="desc">
+                    <p class="p1">
+                      <i class="fa-solid fa-cart-plus"></i> Quantity:{{
+                        card.avaliableBalance
+                      }}
+                    </p>
+                    <div class="timeframe">
+                      <p class="p1">Vaildation Date</p>
+                      <p class="time">{{ card.validDate }}</p>
+                    </div>
+                  </div>
+                  <!-- <div class="btn-vou">
                   <button type="button">Assing to merchant</button>
               </div> -->
+                </div>
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+          <div
+            class="overlay"
+            *ngIf="isAssignPopupOpen"
+            (click)="closeAssignPopup()"
+          ></div>
+
+          <div class="assign-popup" *ngIf="isAssignPopupOpen">
+            <div class="popup-content">
+              <button class="close-btn" (click)="closeAssignPopup()">✖</button>
+
+              <h3>Assign Voucher to Client</h3>
+
+              <form [formGroup]="assignForm">
+                <div class="form-group">
+                  <label for="name">Client Name:</label>
+                  <input
+                    id="name"
+                    type="text"
+                    formControlName="name"
+                    placeholder="Enter Client Name"
+                  />
+                  <small
+                    class="error"
+                    *ngIf="
+                      assignForm.controls['name'].invalid &&
+                      assignForm.controls['name'].touched
+                    "
+                  >
+                    Name is required
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Client Phone:</label>
+                  <input
+                    id="phone"
+                    type="text"
+                    formControlName="phone"
+                    placeholder="Enter Client Phone"
+                  />
+                  <small
+                    class="error"
+                    *ngIf="
+                      assignForm.controls['phone'].invalid &&
+                      assignForm.controls['phone'].touched
+                    "
+                  >
+                    Enter a valid phone number
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Client Email:</label>
+                  <input
+                    id="email"
+                    type="email"
+                    formControlName="email"
+                    placeholder="Enter Client Email"
+                  />
+                  <small
+                    class="error"
+                    *ngIf="
+                      assignForm.controls['email'].invalid &&
+                      assignForm.controls['email'].touched
+                    "
+                  >
+                    Enter a valid email address
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label for="voucher">Select Voucher:</label>
+                  <select id="voucher" formControlName="voucher">
+                    <option
+                      *ngFor="let voucher of filteredVouchers"
+                      [value]="voucher.id"
+                    >
+                      {{ voucher.name }}
+                    </option>
+                  </select>
+                  <small
+                    class="error"
+                    *ngIf="
+                      assignForm.controls['voucher'].invalid &&
+                      assignForm.controls['voucher'].touched
+                    "
+                  >
+                    Please select a voucher
+                  </small>
+                </div>
+
+                <div class="popup-buttons">
+                  <button
+                    type="button"
+                    class="assign-btn"
+                    (click)="assignVoucher()"
+                    [disabled]="assignForm.invalid"
+                  >
+                    Assign
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-      </ng-template>
-    </ng-container>
-  </owl-carousel-o>
+      </ng-template></ng-container
+    ></owl-carousel-o
+  >
 </div>
