@@ -16,7 +16,8 @@
       <label for="discount">Discount:</label>
       <select id="discount" formControlName="voucherId">
         <option *ngFor="let voucher of vouchers" [value]="voucher.id">
-          Name: {{ voucher.name }}, Quantity: {{ voucher.avaliableBalance }}
+          Name: {{ voucher.name }} -{{ "   " }} Quantity:
+          {{ voucher.avaliableBalance }}
         </option>
       </select>
     </div>

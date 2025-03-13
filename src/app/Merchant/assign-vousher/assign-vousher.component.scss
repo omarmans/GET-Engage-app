@@ -18,8 +18,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 20;
-  width: 300px;
-  max-width: 80%;
+  width: 500px;
+  // max-width: 80%;
 }
 
 .close-btn {
@@ -67,4 +67,10 @@ button:disabled {
   padding: 10px;
   background-color: rgb(192, 121, 121);
   color: rgb(148, 73, 73);
+}
+
+@media (max-width: 767px) {
+  .form-popup {
+    width: 50%;
+  }
 }

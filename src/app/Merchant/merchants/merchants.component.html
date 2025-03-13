@@ -1,41 +1,46 @@
 <div class="container">
-
-  <!--title -->
+  <!-- title -->
   <app-header-title>
-    <header>
+    <header class="relative">
       <h2>Merchants</h2>
 
-      <div class="btn flex w-full justify-end ">
-        <div class="add-button ">
-          <button (click)="addMerchant()">+ Add Merchant</button>
+      <button class="md:hidden" (click)="toggleMenu()">☰</button>
+
+      <div
+        class="absolute left-0 right-0 bg-white shadow-md rounded-md p-4 transition-all duration-300 md:flex md:static md:w-auto md:shadow-none md:p-0"
+        [ngClass]="{ hidden: !menuOpen, 'block top-full': menuOpen }"
+      >
+        <div class="flex flex-col md:flex-row w-full gap-4">
+          <div class="add-button w-full">
+            <button class="w-full" (click)="addMerchant()">
+              + Add Merchant
+            </button>
+          </div>
+          <div class="add-button w-full">
+            <button class="w-full" (click)="showForm = true">
+              Assign Voucher
+            </button>
+          </div>
         </div>
-        <div class="add-button">
-          <button (click)="showForm = true">Assign Voucher</button>
-      </div>
       </div>
     </header>
-
   </app-header-title>
-  <app-assign-vousher 
-  [showForm]="showForm" 
-  (closeForm)="showForm = false">
-</app-assign-vousher> 
 
-  
+  <app-assign-vousher [showForm]="showForm" (closeForm)="showForm = false">
+  </app-assign-vousher>
+
   <!-- searechComponents -->
   <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
 
   <div class="Merchants">
     @for ( Merchant of filteredMerchants; track Merchant.id) {
-      <div class="Merchant">
-
-        <div class="name">
-       
-           <img [src]="Merchant.picURL" alt="" class="">
-          <h2>{{Merchant.name}}</h2>
-        </div>
-        <button (click)="merchantDetails(Merchant.name)">Details</button>
+    <div class="Merchant">
+      <div class="name">
+        <img [src]="Merchant.picURL" alt="" class="" />
+        <h2>{{ Merchant.name }}</h2>
       </div>
+      <button (click)="merchantDetails(Merchant.name)">Details</button>
+    </div>
     }
   </div>
 </div>

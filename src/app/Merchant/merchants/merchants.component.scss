@@ -1,104 +1,138 @@
-.container{
+.container {
   min-width: 100%;
   min-height: 100vh;
   background-color: #dedede;
 }
-header{
+header {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: white;
   width: 100%;
   border-bottom-right-radius: 12px;
   border-bottom-left-radius: 12px;
+  padding: 10px;
+  position: relative;
 }
-.add-button{
-  margin-right: 8px;
-  width: 10%;
-  text-align: right;
-  align-content: center;
+
+/* تنسيق قائمة الأزرار */
+.add-button button {
+  padding: 10px;
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
-.link{color: white;}
-.add-button button{
+
+.add-button button:hover {
+  background-color: #0056b3;
+}
+
+/* عند فتح القائمة في الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .btn {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+.link {
+  color: white;
+}
+.add-button button {
   padding: 1%;
-  background-color: #033C5B;
-  border: 1px solid #033C5B;
+  background-color: #033c5b;
+  border: 1px solid #033c5b;
   color: white;
   border-radius: 10px;
 }
-h2{padding-left: 2%;font-size: xx-large;}
+h2 {
+  padding-left: 2%;
+  font-size: xx-large;
+}
 
-  .Merchants{
+.Merchants {
+  display: flex;
+  padding: 2%;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 20px;
+  justify-content: center;
+  .Merchant {
     display: flex;
-   padding: 2%;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    gap: 20px;
-    justify-content: center;
-    .Merchant{
+    align-items: center;
+    flex-direction: column;
+    flex-basis: calc(35% - 10px);
+    // height: 30vh;
+    border-radius: 5px;
+    padding: 10px 25px;
+    border: 3px solid #ffffff;
+    background-color: white;
+    box-shadow: 0 4px 6px 0 #a6d4ffa6;
+    transition: 0.4s;
+    &:hover {
+      transform: translateY(-5px);
+      cursor: pointer;
+    }
+    .name {
+      width: 70%;
+
+      color: #012a41;
+    }
+    div {
       display: flex;
       align-items: center;
       flex-direction: column;
-      flex-basis: calc(35% - 10px);
-      // height: 30vh;
-      border-radius: 5px;
+      gap: 10px;
+      padding: 20px;
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+      }
+      h2 {
+        margin: 0;
+        font-size: 30px;
+        font-weight: bold;
+      }
+    }
+
+    button {
+      display: block;
+      text-align: center;
       padding: 10px 25px;
-      border: 3px solid #ffffff ;
-      background-color: white;
-       box-shadow: 0 4px 6px 0  #A6D4FFA6;
-       transition: .4s;
-       &:hover{
-        transform: translateY(-5px);
-        cursor: pointer;
-       }
-       .name{
-        width: 70%;
 
-        color:#012A41;
-       }
-       div{
-        display: flex;
-        align-items: center ;
-flex-direction: column;        gap: 10px;
-        padding: 20px;
-        img{
-         
-          width: 80px;
-          height: 80px;
-          border-radius: 50%;
-        }
-        h2{
-          margin: 0;
-          font-size: 30px;
-          font-weight: bold;
-
-        }
-       }
-
-       button{
-        display: block;
-        text-align: center;
-        padding: 10px 25px;
-      
-        border-radius: 12px;
-        border: 1px solid #eee;
-        background-color: #012A41;
-        color: #FFFFFF;
-        font-weight: 400;
-        cursor: pointer;
-        font-size: larger;
-        transition: .4s;
-        &:hover{
-            border:1px solid #033C5B;
-            background-color: white;
-            color: #033C5B;
-        }
-       }
+      border-radius: 12px;
+      border: 1px solid #eee;
+      background-color: #012a41;
+      color: #ffffff;
+      font-weight: 400;
+      cursor: pointer;
+      font-size: larger;
+      transition: 0.4s;
+      &:hover {
+        border: 1px solid #033c5b;
+        background-color: white;
+        color: #033c5b;
+      }
     }
   }
+}
 
-@media (max-width:686px) {
-  .Merchants{
+@media (max-width: 686px) {
+  .Merchants {
     flex-direction: column;
-    .Merchant{
+    .Merchant {
       flex-basis: 100%;
     }
   }

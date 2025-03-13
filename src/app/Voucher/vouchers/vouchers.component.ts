@@ -7,11 +7,18 @@ import { Voucher } from '../../models/Vousher.model';
 import { SearchComponent } from '../../shared/search/search.component';
 import { HideLongNamePipe } from '../../shared/pipes/hide-long-name.pipe';
 import { ToastrService } from 'ngx-toastr';
+import { HeaderTitleComponent } from '../../shared/header-title/header-title.component';
 
 @Component({
   selector: 'app-vouchers',
   standalone: true,
-  imports: [CarouselModule, CommonModule, RouterModule, HideLongNamePipe],
+  imports: [
+    CarouselModule,
+    CommonModule,
+    RouterModule,
+    HideLongNamePipe,
+    HeaderTitleComponent,
+  ],
   templateUrl: './vouchers.component.html',
   styleUrl: './vouchers.component.scss',
 })

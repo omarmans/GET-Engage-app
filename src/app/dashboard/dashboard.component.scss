@@ -4,17 +4,7 @@
   min-width: 100%;
   min-height: 100vh;
 }
-h2 {
-  padding-left: 2%;
-  font-size: x-large;
-}
-header {
-  display: flex;
-  background-color: white;
-  width: 100%;
-  border-bottom-right-radius: 12px;
-  border-bottom-left-radius: 12px;
-}
+
 .add-button {
   width: 85%;
   text-align: right;
@@ -36,6 +26,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
   gap: 10px;
   padding: 1%;
   .vousher {
@@ -44,46 +35,18 @@ header {
     border: 1px solid #ffffff;
     background-color: white;
     border-radius: 12px;
-    flex-basis: 33.33%;
+    flex-basis: calc(100% - 10px);
     padding: 10px 25px;
     .vousher-header,
     p {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 10px;
     }
   }
 }
 
-// .stat{
-//     display: flex;
-//     margin-top: 20px;
-//     gap: 100px;
-//     justify-content: center;
-//     .commissions{
-//         display: flex;
-// flex-wrap: wrap;
-// gap: 10px;
-// color: #eee;
-// .commission{
-//             border-radius: 12px;
-//             width: 100%;
-//             padding: 30px;
-//             background-color: #777;
-//             .commission-header{
-//                 display: flex;
-//                 // justify-content: space-between;
-//                 i{
-//                     margin-right: 20px;
-//                 }
-//             }
-//             p{
-//                 text-align: center;
-//             }
-//         }
-//     }
-// }
 .stat {
   display: flex;
   flex-wrap: wrap;
@@ -166,4 +129,35 @@ th {
 }
 tr:nth-child(even) {
   background-color: #f9f9f9;
+}
+
+@media (max-width: 767px) {
+  header {
+    h1 {
+      // text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .voushers {
+    // display: flex;
+    flex-direction: column;
+    .vousher {
+      width: 80%;
+      transition: 0.5s;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+  .stat {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .chart-container {
+      padding: 10px;
+      width: 90%;
+    }
+  }
 }
