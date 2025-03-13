@@ -1,6 +1,9 @@
-<div class="page d-flex">
-  <div class="sidebar  p-relative" >
-    <img src="Media.jfif">
+<div class="page d-flex" >
+  <div class="sidebar  p-relative" *ngIf="isAuthenticated">
+    <div class="pb-8">
+      <img src="image (1).png">
+
+    </div>
     <!-- <img src="getGroup.png" class="" alt="" /> -->
     <ul>
       <li *ngFor="let link of classesArray; let i = index">
@@ -9,11 +12,12 @@
           routerLinkActiveOptions="{ exact: true }"
           [routerLink]="link.href"
           (click)="setActiveLink(i)"
-          class="d-flex  fs-14 c-black rad-6 mb-2  p-1"
+          class="d-flex fs-14 c-black rad-6 mb-2 p-1"
         >
-          <i  class="imgs" [ngClass]="link.i"></i>
+          <i class="imgs" [ngClass]="link.i"></i>
         </a>
       </li>
+      
     </ul>
   </div>
   <div class="content ">
