@@ -49,9 +49,7 @@
         [type]="pieChartType"
       >
       </canvas>
-    </div>
-<<<<<<< HEAD
-    
+    </div>    
     <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
         <div class="popup" (click)="$event.stopPropagation()">
             <h3>Vouchers List</h3>
@@ -73,30 +71,7 @@
             </table>
             <button (click)="closePopup()">Close</button>
         </div>
-=======
-  </div>
 
-  <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
-    <div class="popup" (click)="$event.stopPropagation()">
-      <h3>Vouchers List</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Discount Name</th>
-            <th>Discount Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let voucher of vouchers">
-            <td>{{ voucher.name }}</td>
-            <td>{{ voucher.discountValue }} %</td>
-          </tr>
-        </tbody>
-      </table>
-      <button (click)="closePopup()">Close</button>
->>>>>>> assignVousher
-    </div>
-  </div>
 
   <div
     class="popup-overlay"
