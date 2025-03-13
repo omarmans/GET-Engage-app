@@ -1,45 +1,53 @@
 <div class="container">
-    <header>
-        <h2>Vouchers</h2>
-        <div class="add-button">
-             <button class="add-voucher" ><a [routerLink]="'/add-voucher'" class="link" >+ Add Voucher</a></button>
-        </div>
-    </header>
-    
-   
-        <owl-carousel-o [options]="customOptions">
-        <ng-container *ngFor="let card of filteredVouchers; trackBy: trackById">
-          <ng-template carouselSlide>
-            <div class="card">
-              
-              <div class="status-badge" [ngClass]="{'active': isActive(card), 'not-active': !isActive(card)}">
-                {{ isActive(card) ? 'Active' : 'Not Active' }}
-              </div>
+  <header>
+    <h2>Vouchers</h2>
+    <div class="add-button">
+      <button class="add-voucher">
+        <a [routerLink]="'/add-voucher'" class="link">+ Add Voucher</a>
+      </button>
+    </div>
+  </header>
 
-              <div class="w-9/12">
-                
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let card of filteredVouchers; trackBy: trackById">
+      <ng-template carouselSlide>
+        <div class="card">
+          <div
+            class="status-badge"
+            [ngClass]="{
+              active: isActive(card),
+              'not-active': !isActive(card)
+            }"
+          >
+            {{ isActive(card) ? "Active" : "Not Active" }}
+          </div>
 
-                <p class="name">{{ card.name | hideLongName}}</p>
-              </div>
-              <div class="discount">
-                <p class="value">{{ card.discountValue }}%</p>
-                <p class="para">To whole price</p>
-              </div>
-              <p class="date">Created on {{ card.validDate }}</p>
-              <hr>
-              <div class="desc">
-                <p class="p1"><i class="fa-solid fa-cart-plus"></i> Quantity:{{ card.avaliableBalance }}</p>
-                <div class="timeframe">
-                  <p class="p1">Vaildation Date </p>
-                  <p class="time">{{ card.validDate }}</p>
-                </div>
-              </div>
-              <!-- <div class="btn-vou">
+          <div class="w-9/12">
+            <!-- <p class="name">{{ card.name | hideLongName}}</p> -->
+            <p class="name">{{ card.name }}</p>
+          </div>
+          <div class="discount">
+            <p class="value">{{ card.discountValue }}%</p>
+            <p class="para">To whole price</p>
+          </div>
+          <p class="date">Created on {{ card.validDate }}</p>
+          <hr />
+          <div class="desc">
+            <p class="p1">
+              <i class="fa-solid fa-cart-plus"></i> Quantity:{{
+                card.avaliableBalance
+              }}
+            </p>
+            <div class="timeframe">
+              <p class="p1">Vaildation Date</p>
+              <p class="time">{{ card.validDate }}</p>
+            </div>
+          </div>
+          <!-- <div class="btn-vou">
                   <button type="button">Assing to merchant</button>
               </div> -->
-            </div>
-          </ng-template>
-        </ng-container>
-      </owl-carousel-o>
-       
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
 </div>

@@ -1,84 +1,100 @@
 <div class="container">
-    <app-header-title>
-        <header>
-            <h2>
-                {{'Dashboard'}}
-            </h2>
-        </header>
-        <!-- <button>Assign Voucher</button> -->
-    </app-header-title>
+  <app-header-title>
+    <header>
+      <h2>Dashboard</h2>
+    </header>
+  </app-header-title>
 
-    <div class="voushers">
-        <div class="vousher" (click)="total()">
-            <div class="vousher-header" >
-                <i class="fa-solid fa-gift"></i>
-                <span>Total number of vouchers</span>
-            </div>
-            <!-- <p>{{merchant?.totalVouchers}}</p> -->
-            <p>{{novou}}</p>
-        </div>
-        <div  class="vousher" (click)="totalmerchant()">
-            <div class="vousher-header">
-                <i class="fa-solid fa-user-check"></i>
-                <span>Total number of merchants</span>
-            </div>
-            <!-- <p>{{merchant?.totalUsedVouchers}}</p> -->
-            <p>{{nomer}}</p>
-        </div>
-        <div  class="vousher">
-            <div class="vousher-header">
-                <i class="fa-solid fa-paperclip"></i>
-                <span>Total redemptions</span>
-            </div>
-            <!-- <p>{{merchant?.totalUnusedVouchers}}</p> -->
-            <p>{{0}}</p>
-        </div>
+  <div class="voushers">
+    <div class="vousher" (click)="total()">
+      <div class="vousher-header">
+        <i class="fa-solid fa-gift"></i>
+        <span>Total number of vouchers</span>
+      </div>
+      <p>{{ novou }}</p>
+    </div>
+    <div class="vousher" (click)="totalmerchant()">
+      <div class="vousher-header">
+        <i class="fa-solid fa-user-check"></i>
+        <span>Total number of merchants</span>
+      </div>
+      <p>{{ nomer }}</p>
+    </div>
+    <div class="vousher">
+      <div class="vousher-header">
+        <i class="fa-solid fa-paperclip"></i>
+        <span>Total redemptions</span>
+      </div>
+      <p>{{ nomer + novou }}</p>
+    </div>
+  </div>
+  <div class="stat">
+    <div class="chart-container">
+      <h3>Merchant Distribution</h3>
+      <canvas
+        baseChart
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [legend]="lineChartLegend"
+        chartType="line"
+      ></canvas>
     </div>
 
-    <div class="stat">
-        <img src="stat.png" alt="">
-        <img src="DiscountTypes.png" alt="">
+    <div class="chart-container">
+      <h3>Sales Statistics</h3>
+      <canvas
+        baseChart
+        [data]="pieChartData"
+        [options]="pieChartOptions"
+        [type]="pieChartType"
+      >
+      </canvas>
     </div>
-    <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
-        <div class="popup" (click)="$event.stopPropagation()">
-            <h3>Vouchers List</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Discount Name</th>
-                        <th>Discount Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let voucher of vouchers">
-                        <td>{{ voucher.name }}</td>
-                        <td>{{ voucher.discountValue }} %</td>
-                    </tr>
-                </tbody>
-            </table>
-            <button (click)="closePopup()">Close</button>
-        </div>
+  </div>
+
+  <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
+    <div class="popup" (click)="$event.stopPropagation()">
+      <h3>Vouchers List</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Discount Name</th>
+            <th>Discount Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let voucher of vouchers">
+            <td>{{ voucher.name }}</td>
+            <td>{{ voucher.discountValue }} %</td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="closePopup()">Close</button>
     </div>
-    
-    <div class="popup-overlay" *ngIf="showPopupmerchant" (click)="closePopup()">
-        <div class="popup" (click)="$event.stopPropagation()">
-            <h3>Merchants List</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Merchant ID</th>
-                        <th>Name Merchant</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let merchant of Merchants">
-                        <td>{{ merchant.id }}</td>
-                        <td>{{ merchant.name }}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <button (click)="closePopupmerchant()">Close</button>
-        </div>
+  </div>
+
+  <div
+    class="popup-overlay"
+    *ngIf="showPopupmerchant"
+    (click)="closePopupmerchant()"
+  >
+    <div class="popup" (click)="$event.stopPropagation()">
+      <h3>Merchants List</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Merchant ID</th>
+            <th>Name Merchant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let merchant of Merchants">
+            <td>{{ merchant.id }}</td>
+            <td>{{ merchant.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="closePopupmerchant()">Close</button>
     </div>
+  </div>
 </div>
-    
