@@ -4,7 +4,17 @@
   min-width: 100%;
   min-height: 100vh;
 }
-
+header {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 30px;
+  h2 {
+    padding-left: 2%;
+    font-size: xx-large;
+  }
+}
 .add-button {
   width: 85%;
   text-align: right;
