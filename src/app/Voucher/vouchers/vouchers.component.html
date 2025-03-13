@@ -84,7 +84,7 @@
             <div class="form-group">
               <label for="voucher">Select Voucher:</label>
               <select id="voucher" formControlName="voucher">
-                <option *ngFor="let voucher of filteredVouchers" [value]="voucher.name">{{ voucher.name }}</option>
+                <option *ngFor="let voucher of filteredVouchers" [value]="voucher.id">{{ voucher.name }}</option>
               </select>
               <small class="error" *ngIf="assignForm.controls['voucher'].invalid && assignForm.controls['voucher'].touched">
                 Please select a voucher

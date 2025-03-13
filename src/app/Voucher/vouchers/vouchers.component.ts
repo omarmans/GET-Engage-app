@@ -7,6 +7,7 @@ import { Voucher } from '../../models/Vousher.model';
 import { SearchComponent } from "../../shared/search/search.component";
 import { HideLongNamePipe } from '../../shared/pipes/hide-long-name.pipe';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-vouchers',
@@ -23,7 +24,7 @@ export class VouchersComponent implements OnInit {
   selectedVoucher = '';
   assignForm!: FormGroup;
 
-  constructor(private router :Router ,private voucher:VouchersService , private fb:FormBuilder){
+  constructor(private router :Router ,private voucher:VouchersService ,private toast:ToastrService, private fb:FormBuilder){
    
   }
   ngOnInit(): void {
@@ -89,17 +90,34 @@ export class VouchersComponent implements OnInit {
 
   closeAssignPopup() {
     this.isAssignPopupOpen = false;
-    this.assignForm.reset(); // إعادة تعيين القيم بعد الإغلاق
+    this.assignForm.reset(); 
   }
 
   assignVoucher() {
     if (this.assignForm.valid) {
-      console.log('Assigned Voucher:', this.assignForm.value);
-      this.isAssignPopupOpen = false;
+      const selectedVoucherId = this.assignForm.value.voucher;
+      const requestData = {
+        name: this.assignForm.value.name,
+        phoneNmber: this.assignForm.value.phone,
+        email: this.assignForm.value.email
+      };
+  
+      this.voucher.assigntoclient(selectedVoucherId, requestData).subscribe({
+        next: (response) => {
+          console.log('Voucher assigned successfully:', response);
+          this.toast.success('Voucher assigned successfully!');
+          this.closeAssignPopup();
+        },
+        error: (error) => {
+          console.error('Error assigning voucher:', error);
+          this.toast.error('Failed to assign voucher. Please try again later.');
+        }
+      });
     } else {
       console.log('Form is invalid');
-      this.assignForm.markAllAsTouched(); // إظهار الأخطاء للمستخدم
+      this.assignForm.markAllAsTouched();
     }
   }
+  
   
 }
