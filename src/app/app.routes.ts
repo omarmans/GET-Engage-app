@@ -8,16 +8,20 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { VouchersComponent } from './Voucher/vouchers/vouchers.component';
 import { AddVoucherComponent } from './Voucher/add-voucher/add-voucher.component';
 import { PendingCommissionComponent } from './Merchant/pending-commission/pending-commission.component';
+import { authGuard } from './guard/auth.guard';
+import { MerchantDashboardComponent } from './merchant-dashboard/merchant-dashboard.component';
 
 export const routes: Routes = [
   { path: '', component: LogInComponent },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'merchants', component: MerchantsComponent },
-  { path: 'add-merchants', component: AddMerchantComponent },
-  { path: 'merchant-details/:name', component: MerchantDetailsComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'vouchers', component: VouchersComponent },
-  { path: 'add-voucher', component: AddVoucherComponent },
-  { path: 'pending-commission', component: PendingCommissionComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
+  { path: 'mer-dashboard', component: MerchantDashboardComponent, canActivate: [authGuard] },
+  { path: 'merchants', component: MerchantsComponent, canActivate: [authGuard] },
+  { path: 'add-merchants', component: AddMerchantComponent, canActivate: [authGuard] },
+  { path: 'merchant-details/:name', component: MerchantDetailsComponent, canActivate: [authGuard] },
+  { path: 'vouchers', component: VouchersComponent, canActivate: [authGuard] },
+  { path: 'add-voucher', component: AddVoucherComponent, canActivate: [authGuard] },
+  { path: 'pending-commission', component: PendingCommissionComponent, canActivate: [authGuard] },
 
+  { path: '**', redirectTo: '' }
 ];

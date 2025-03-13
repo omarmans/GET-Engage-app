@@ -6,24 +6,36 @@ import { VouchersService } from '../services/vouchers.service';
 import { Voucher } from '../../models/Vousher.model';
 import { SearchComponent } from "../../shared/search/search.component";
 import { HideLongNamePipe } from '../../shared/pipes/hide-long-name.pipe';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-vouchers',
   standalone: true,
-  imports: [CarouselModule, CommonModule, RouterModule, HideLongNamePipe],
+  imports: [CarouselModule, CommonModule, ReactiveFormsModule,RouterModule, HideLongNamePipe],
   templateUrl: './vouchers.component.html',
   styleUrl: './vouchers.component.scss'
 })
 export class VouchersComponent implements OnInit {
   vouchers! : Voucher[];
   filteredVouchers: Voucher[] = [];
-  
+  userEmail: string | null = null;
+  isAssignPopupOpen = false;
+  selectedVoucher = '';
+  assignForm!: FormGroup;
 
-  constructor(private router :Router ,private voucher:VouchersService){
+  constructor(private router :Router ,private voucher:VouchersService , private fb:FormBuilder){
    
   }
   ngOnInit(): void {
+    this.userEmail = localStorage.getItem('userEmail'); 
     this.loadVouchers();
+
+    this.assignForm = this.fb.group({
+      name: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern('^01[0-9]{9}$')]],
+      email: ['', [Validators.required, Validators.email]],
+      voucher: ['', Validators.required]
+    });
   }
   loadVouchers() {
     this.voucher.getvouchers().subscribe({
@@ -71,21 +83,23 @@ export class VouchersComponent implements OnInit {
     card.showMenu = !card.showMenu;
   }
   
-  addQuantity(card: any) {
-    this.router.navigate(['/add-voucher'], {
-      queryParams: { title: 'Add Quantity', name: card.name , discount: card.discount}
-    });
+  openAssignPopup() {
+    this.isAssignPopupOpen = true;
   }
-  
-  editTimeframe(card: any) {
-    this.router.navigate(['/add-voucher'], {
-      queryParams: { title: 'Edit TimeFrame', name: card.name , discount: card.discount}
-    });
+
+  closeAssignPopup() {
+    this.isAssignPopupOpen = false;
+    this.assignForm.reset(); // إعادة تعيين القيم بعد الإغلاق
   }
-  onSearchTextChanged(searchText: string) {
-    this.filteredVouchers = this.vouchers.filter(voucher =>
-      voucher.name.toLowerCase().includes(searchText.toLowerCase())
-    );
+
+  assignVoucher() {
+    if (this.assignForm.valid) {
+      console.log('Assigned Voucher:', this.assignForm.value);
+      this.isAssignPopupOpen = false;
+    } else {
+      console.log('Form is invalid');
+      this.assignForm.markAllAsTouched(); // إظهار الأخطاء للمستخدم
+    }
   }
   
 }

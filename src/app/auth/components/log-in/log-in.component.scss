@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   height: 100vh;
-  width: 100%;
+  min-width: 100%;
   background-color: #002A41; 
   color: #dedede;
   font-family: Arial, sans-serif;
@@ -17,7 +17,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  min-width: 100%;
   height: 100%;
   background: radial-gradient(circle, rgba(217, 217, 217, 0.7) 1px, transparent 1px);
   background-size: 40px 40px; 
@@ -51,28 +51,28 @@
 
 .off-text {
   position: absolute;
-  top: -8%;
+  top: -16%;
   left: 0;
   font-family:sans-serif;
   font-size:300px;
   font-weight: bold;
   color: #002A41;
-  -webkit-text-stroke: 2px #0096D8; 
-  mask-image: linear-gradient(to bottom, transparent 20%, black 100%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 20%, black 100%);
+  -webkit-text-stroke: 2px #00b3ff96; 
+  mask-image: linear-gradient(to bottom, transparent 30%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 30%, black 100%);
   color: transparent;
 }
 .-text {
   position: absolute;
-  bottom: -8%;
+  bottom: -15%;
   left: 0;
   font-family:sans-serif;
   font-size:300px;
   font-weight: bold;
   color: #002A41;
-  -webkit-text-stroke: 2px #0096D8; 
-  mask-image: linear-gradient(to top, transparent 25%, black 100%);
-  -webkit-mask-image: linear-gradient(to top, transparent 25%, black 100%);
+  -webkit-text-stroke: 2px #00b3ff96; 
+  mask-image: linear-gradient(to top, transparent 35%, black 100%);
+  -webkit-mask-image: linear-gradient(to top, transparent 35%, black 100%);
   color: transparent;
 }
 
@@ -81,6 +81,37 @@
   font-size: 90px;
   color: #E4FDFF;
 }
+.get-logo h1 {
+  display: flex;
+  gap: 5px;
+  z-index: 1000;
+}
+
+.get-logo h1 span {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: dropDown 0.5s ease-out forwards;
+}
+.get-logo h1 span img{
+  width: 180px;
+}
+@keyframes dropDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.get-logo h1 span:nth-child(1) { animation-delay: 0s; }
+.get-logo h1 span:nth-child(2) { animation-delay: 0.2s; }
+.get-logo h1 span:nth-child(3) { animation-delay: 0.4s; }
+.get-logo h1 span:nth-child(4) { animation-delay: 0.6s; }
+.get-logo h1 span:nth-child(5) { animation-delay: 0.8s; }
+.get-logo h1 span:nth-child(6) { animation-delay: 1s; }
 
 /* Hand Image */
 .hand-image img {
@@ -163,7 +194,7 @@ button {
   justify-content: center;
   justify-items: center;
   width: 70%;
-  height: 90vh;
+  min-height: 90vh;
 }
 .group{
   width: 80%;
@@ -237,8 +268,11 @@ button:disabled {
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
-    flex-direction: column;
+    flex-direction: row;
     height: auto;
+  }
+  .left-section , .right-section{
+    width: 50%;
   }
   .left-section h1 {
     font-size: 40px;
